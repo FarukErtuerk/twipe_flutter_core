@@ -41,31 +41,41 @@ class Server {
   @protected
   Map<String, dynamic> _defaultBody = {};
 
-  Server(this._id, this._host, this._port, this._isHttp, this._cookieHandler);
+  Server(this._id, this._host, this._port, this._isHttp, this._cookieHandler,
+      this._defaultHeader, this._defaultBody);
 
   /// Creates Server From Host And Port
   static Future<Server> fromHostAndPort(String id, String host, int port,
-      {bool isHttp = true}) async {
+      {bool isHttp = true,
+      Map<String, dynamic>? defaultHeader,
+      Map<String, dynamic>? defaultBody}) async {
     CookieHandler cookieHandler = CookieHandler(id);
     await cookieHandler.loadCookies();
-    return Server(id, host, port, isHttp, cookieHandler);
+    return Server(id, host, port, isHttp, cookieHandler, defaultHeader ?? {},
+        defaultBody ?? {});
   }
 
   /// Creates Server From Host
   static Future<Server> fromHost(String id, String host,
-      {bool isHttp = true}) async {
+      {bool isHttp = true,
+      Map<String, dynamic>? defaultHeader,
+      Map<String, dynamic>? defaultBody}) async {
     CookieHandler cookieHandler = CookieHandler(id);
     await cookieHandler.loadCookies();
-    return Server(id, host, -1, isHttp, cookieHandler);
+    return Server(id, host, -1, isHttp, cookieHandler, defaultHeader ?? {},
+        defaultBody ?? {});
   }
 
   /// Creates Server From Localhost
   static Future<Server> localhost(String id,
-      {bool withNumbers = false, bool isHttp = true}) async {
+      {bool withNumbers = false,
+      bool isHttp = true,
+      Map<String, dynamic>? defaultHeader,
+      Map<String, dynamic>? defaultBody}) async {
     CookieHandler cookieHandler = CookieHandler(id);
     await cookieHandler.loadCookies();
-    return Server(
-        id, withNumbers ? "127.0.0.1" : "localhost", -1, isHttp, cookieHandler);
+    return Server(id, withNumbers ? "127.0.0.1" : "localhost", -1, isHttp,
+        cookieHandler, defaultHeader ?? {}, defaultBody ?? {});
   }
 
   /// Adds Route To Server
