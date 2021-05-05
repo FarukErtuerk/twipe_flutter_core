@@ -4,12 +4,15 @@ abstract class Model {
   @protected
   final Map<String, dynamic> _modelData;
 
+  /// Required Fields will be checked in validation
   @protected
-  final List<String> requiredFields = [];
+  List<String> get requiredFields;
 
+  /// You can define your hidden fields here and trim them when requesting Model Data
   @protected
-  final List<String> hiddenFields = [];
+  List<String> get hiddenFields;
 
+  /// Do Not Edit this, except you know what you are doing
   @protected
   final List<String> baseFields = ["id", "created_at", "updated_at"];
 
@@ -27,21 +30,36 @@ abstract class Model {
 
   /// Validates Model Data
   bool validate() {
-    for (String key in requiredFields) {
-      if (!_modelData.containsKey(key)) {
-        return false;
-      }
+    if (!_validateField(requiredFields)) {
+      return false;
     }
-    for (String key in baseFields) {
-      if (!_modelData.containsKey(key)) {
-        return false;
+    if (!_validateField(baseFields)) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Validate Specific Field Array
+  @protected
+  bool _validateField(List<String> field) {
+    for (String key in field) {
+      if (key.contains("|")) {
+        List<String> keys = key.split("|");
+        if (!_modelData.containsKey(keys[0]) &&
+            !_modelData.containsKey(keys[1])) {
+          return false;
+        }
+      } else {
+        if (!_modelData.containsKey(key)) {
+          return false;
+        }
       }
     }
     return true;
   }
 
   /// Returns Model Data With Options
-  Map<String, dynamic> getModelData({bool applyHiddenFields = true}) {
+  Map<String, dynamic> getModelData({bool applyHiddenFields = false}) {
     if (applyHiddenFields) {
       Map<String, dynamic> tmp = _modelData;
       for (String key in hiddenFields) {
@@ -53,7 +71,6 @@ abstract class Model {
   }
 
   /// Returns Model ID
-  @protected
   String getId() {
     return _id!;
   }

@@ -24,13 +24,19 @@ abstract class Collection<T> {
     return result;
   }
 
-  /// Save Model to Cache
-  @protected
-  Future<void> saveModel(Model model, {bool applyHiddenFields = true}) async {
-    await CacheHandler.saveCacheObjectToList(
+  /// Save Model to Cache and add to Map
+  Future<bool> saveModel(Model model, {bool applyHiddenFields = true}) async {
+    if (!model.validate()) {
+      return false;
+    }
+    if (!await CacheHandler.saveCacheObjectToList(
         "collection_" + _id,
         CacheObject(model.getModelData(applyHiddenFields: applyHiddenFields)),
-        "id");
+        "id")) {
+      return false;
+    }
+    _models[model.getId()] = model;
+    return true;
   }
 
   /// Initialize your Model Data Here
@@ -58,13 +64,4 @@ abstract class Collection<T> {
 
   /// Creates Model From Model Data
   T? createModel(Map<String, dynamic> modelData);
-
-  /// Adds Model To Collection
-  bool addModel(dynamic model) {
-    if (!model.validate()) {
-      return false;
-    }
-    _models[model.getId()] = model;
-    return true;
-  }
 }
