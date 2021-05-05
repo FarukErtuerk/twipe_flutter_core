@@ -9,8 +9,6 @@
 .history
 .svn/
 
-CHANGELOG.md
-
 # IntelliJ related
 *.iml
 *.ipr
