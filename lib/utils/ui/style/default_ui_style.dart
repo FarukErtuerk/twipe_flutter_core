@@ -9,4 +9,13 @@ abstract class DefaultUiStyle {
 
   /// Accent Color
   Color get accent;
+
+  /// Darkest Color
+  Color get darkest;
+
+  /// Lightests Color
+  Color get lightest;
+
+  /// Base Color
+  Color get base;
 }
