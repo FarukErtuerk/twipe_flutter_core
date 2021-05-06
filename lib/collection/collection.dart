@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:twipe_flutter_core/model/cached_model.dart';
 import '../cache/cache_handler.dart';
 import '../cache/cache_object.dart';
 import '../model/model.dart';
@@ -15,12 +16,12 @@ abstract class Collection<T> {
 
   /// Load Model Data From Cache From Cache
   @protected
-  Future<List<Map<String, dynamic>>> loadModelDataFromCache() async {
-    List<Map<String, dynamic>> result = [];
+  Future<List<CachedModel>> loadModelDataFromCache() async {
+    List<CachedModel> result = [];
     List<CacheObject> cache =
         await CacheHandler.getCacheList("collection_" + _id);
     for (CacheObject cacheObject in cache) {
-      result.add(cacheObject.data);
+      result.add(CachedModel(cacheObject.data));
     }
     return result;
   }
@@ -48,9 +49,18 @@ abstract class Collection<T> {
     return _id;
   }
 
+  void setModels(Map<String, T> models) {
+    _models = models;
+  }
+
   /// Returns Models In Collection
   Map<String, T> getModels() {
     return _models.cast<String, T>();
+  }
+
+  /// Returns Model by Id
+  T getModelById(String id) {
+    return _models[id]!;
   }
 
   /// Returns Model With Specific Value
