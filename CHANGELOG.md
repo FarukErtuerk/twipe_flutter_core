@@ -11,3 +11,8 @@
 * Gradient Text Widget Added
 * Authentication Added
 * Field Added
+
+## [0.0.4].
+
+* System Overlay Handler Added
+* Default Ui Style Added
