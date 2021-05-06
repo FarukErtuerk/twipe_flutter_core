@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+/// Model class handles your Data
 abstract class Model {
   @protected
   final Map<String, dynamic> _modelData;

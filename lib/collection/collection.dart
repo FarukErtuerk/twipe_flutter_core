@@ -3,6 +3,7 @@ import '../cache/cache_handler.dart';
 import '../cache/cache_object.dart';
 import '../model/model.dart';
 
+/// Collection class contains Models and handles them
 abstract class Collection<T> {
   @protected
   final String _id;
