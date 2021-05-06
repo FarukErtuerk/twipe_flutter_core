@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 /// System Overlay Handler
 /// Apply Color to Application and dont worry about anything
 class SystemOverlayHandler {
-  static flat(Color color) {
+  /// Apply Navigation and Status bar Color
+  static booth(Color color) {
     Brightness brightness = ThemeData.estimateBrightnessForColor(color);
     if (brightness == Brightness.light) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
