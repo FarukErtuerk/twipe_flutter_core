@@ -19,4 +19,9 @@ class AuthUser extends Model {
   String getEmail() {
     return getModelData()["email"];
   }
+
+  /// Returns Auth Token
+  String getToken() {
+    return getModelData()["token"];
+  }
 }
