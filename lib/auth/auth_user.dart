@@ -5,10 +5,10 @@ class AuthUser extends Model {
   AuthUser(Map<String, dynamic> modelData) : super(modelData);
 
   @override
-  List<String> get hiddenFields => ["password", "email"];
+  List<String> get hiddenFields => ["password", "email", "token"];
 
   @override
-  List<String> get requiredFields => ["password", "email"];
+  List<String> get requiredFields => ["password", "email", "token"];
 
   /// Returns Auth Password
   String getPassword() {
