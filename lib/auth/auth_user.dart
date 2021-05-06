@@ -6,11 +6,11 @@ class AuthUser extends Model {
 
   @override
   List<String> get hiddenFields =>
-      ["password", "email", "token", "phone_number"];
+      ["email", "password", "phone_number", "token"];
 
   @override
   List<String> get requiredFields =>
-      ["password", "email|phone_number", "token"];
+      ["email|phone_number", "password", "token"];
 
   /// Returns Auth Password
   String getPassword() {
