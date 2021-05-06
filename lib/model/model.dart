@@ -75,4 +75,14 @@ abstract class Model {
   String getId() {
     return _id!;
   }
+
+  /// Returns Creation Date
+  int getCreatedAt() {
+    return int.parse(_modelData["created_at"].toString());
+  }
+
+  /// Returns Update Date
+  int getUpdatedAt() {
+    return int.parse(_modelData["updated_at"].toString());
+  }
 }
