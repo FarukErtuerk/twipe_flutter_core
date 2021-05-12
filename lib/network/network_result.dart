@@ -50,6 +50,11 @@ class NetworkResult {
     return false;
   }
 
+  /// Returns Network Result Status
+  String getStatus() {
+    return _convertedData["status"];
+  }
+
   /// Network Result Is Safe?
   bool isDone() {
     if (!_convertedData.containsKey("status")) {

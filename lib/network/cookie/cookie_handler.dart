@@ -20,6 +20,11 @@ class CookieHandler {
     return _cookies;
   }
 
+  /// Clear Cookie Cache
+  Future<bool> clear() async {
+    return await CacheHandler.removeCacheObject("server_" + _id + "_cookies");
+  }
+
   String convertCookiesToString() {
     String cookies = "";
     for (String key in getCookies().keys) {

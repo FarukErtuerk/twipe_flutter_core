@@ -27,7 +27,7 @@ class NetworkConfig {
       if (!networkResult.hasData()) {
         return false;
       }
-      Map<String, dynamic> result = networkResult.getData()["data"];
+      Map<String, dynamic> result = networkResult.getData();
       _config = result;
       await saveConfig();
     } catch (e) {}
