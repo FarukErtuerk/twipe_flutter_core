@@ -75,19 +75,19 @@ abstract class Network {
       }
     }
 
+    /// Add Server Default Headers
+    if (serverRoute.getDefaultHeader().isNotEmpty) {
+      for (String key in serverRoute.getDefaultHeader().keys) {
+        request.headers.add(key, serverRoute.getDefaultHeader()[key]);
+      }
+    }
+
     /// Add Server Default Body
     if (server.getDefaultBody().isNotEmpty) {
       if (data == null) {
         data = {};
       }
       data.addAll(server.getDefaultBody());
-    }
-
-    /// Add Server Default Headers
-    if (serverRoute.getDefaultHeader().isNotEmpty) {
-      for (String key in serverRoute.getDefaultHeader().keys) {
-        request.headers.add(key, serverRoute.getDefaultHeader()[key]);
-      }
     }
 
     /// Add Server Route Default Body
