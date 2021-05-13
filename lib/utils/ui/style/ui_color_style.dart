@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 /// This Class will help you designing your Application
-abstract class UIColorStyle {
+mixin UIColorStyle {
   /// Primary Color
   Color get primary;
 

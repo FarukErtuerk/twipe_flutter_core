@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class UITextStyle {
+mixin UITextStyle {
   /// Primary Text Style.
   TextStyle get primaryTextStyle;
 
