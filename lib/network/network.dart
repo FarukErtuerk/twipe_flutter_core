@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:twipe_flutter_core/network/faker/network_faker.dart';
 
+import 'faker/network_faker_request.dart';
 import 'network_result.dart';
 import 'server/server.dart';
 import 'server/server_route.dart';
@@ -36,9 +38,10 @@ abstract class Network {
   /// You can change the way you are sending a request to the server
   Future<NetworkResult> call(String serverId, String routeId,
       {int requestType = NetworkRequestType.POST,
-      Map<String, dynamic>? data}) async {
+      Map<String, dynamic>? data,
+      Map<String, String>? replacements}) async {
     Server server = getServer(serverId);
-    Uri uri = server.getUri(routeId: routeId);
+    Uri uri = server.getUri(routeId: routeId, replacements: replacements);
     ServerRoute serverRoute = server.getRoute(routeId);
     return await _callServer(server, serverRoute, uri, requestType, data);
   }
@@ -54,6 +57,14 @@ abstract class Network {
 
     client.badCertificateCallback =
         ((X509Certificate cert, String host, int port) => true);
+
+    /// Check if NetworkFaker contains Route.
+    if (NetworkFaker.hasRoute(serverRoute.getId())) {
+      return await NetworkFaker.getRoute(serverRoute.getId()).callback(
+          NetworkFakerRequest(server, serverRoute, data, requestType, uri));
+    }
+
+    /// Creates the actual Network Request.
     HttpClientRequest request = await client.postUrl(uri);
 
     if (requestType == NetworkRequestType.GET) {
@@ -75,7 +86,7 @@ abstract class Network {
       }
     }
 
-    /// Add Server Default Headers
+    /// Add Server Route Default Headers
     if (serverRoute.getDefaultHeader().isNotEmpty) {
       for (String key in serverRoute.getDefaultHeader().keys) {
         request.headers.add(key, serverRoute.getDefaultHeader()[key]);

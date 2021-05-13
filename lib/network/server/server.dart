@@ -99,7 +99,7 @@ class Server {
   }
 
   /// Returns Url With Given Route Path
-  Uri getUri({String? routeId}) {
+  Uri getUri({String? routeId, Map<String, String>? replacements}) {
     String url = "";
     if (_host.isNotEmpty && _port >= 0) {
       url = _host + ":" + _port.toString();
@@ -108,7 +108,7 @@ class Server {
     }
     String route = "";
     if (routeId != null) {
-      route = getRoute(routeId).getPath();
+      route = getRoute(routeId).getPath(replacements: replacements);
     }
     if (_isHttp) {
       return Uri.http(url, route);
