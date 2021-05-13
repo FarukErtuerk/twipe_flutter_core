@@ -5,7 +5,7 @@ import 'package:twipe_flutter_core/utils/config/environment_handler.dart';
 
 /// Setup Twipe Library
 /// Loads Environment Handler
-Future<void> initialize() async {
+Future<void> initialize({String configFilePath = ".env"}) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EnvironmentHandler.setup();
+  await EnvironmentHandler.setup(configFilePath: configFilePath);
 }
