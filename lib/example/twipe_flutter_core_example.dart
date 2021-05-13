@@ -6,10 +6,10 @@ import 'package:twipe_flutter_core/utils/ui/style/ui_text_style.dart';
 
 Future<void> main() async {
   await initialize(configFilePath: ".env.example");
-  runApp(ExampleApp());
+  runApp(_ExampleApp());
 }
 
-class ExampleApp extends StatelessWidget {
+class _ExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
