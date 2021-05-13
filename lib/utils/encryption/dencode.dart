@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class DEncode {
   /// Encodes String
   @protected
-  Future<String> encode(String key, String value) async {
+  static Future<String> encode(String key, String value) async {
     List<String> keyList =
         key.runes.map((rune) => String.fromCharCode(rune)).toList();
     int currentKeyPos = 0;
@@ -26,7 +26,7 @@ class DEncode {
   }
 
   @protected
-  String _calculateStringFromKey(String key, String value, String fullKey) {
+  static String _calculateStringFromKey(String key, String value, String fullKey) {
     String result = "";
     int a = key.codeUnitAt(0);
     int b = value.codeUnitAt(0);
@@ -36,7 +36,7 @@ class DEncode {
 
   /// Decodes String from encrypted Value
   @protected
-  Future<String> decode(String key, String value) async {
+  static Future<String> decode(String key, String value) async {
     List<String> keyList =
         key.runes.map((rune) => String.fromCharCode(rune)).toList();
 
@@ -55,7 +55,7 @@ class DEncode {
   }
 
   @protected
-  String _calculateKeyFromString(String key, String value, String fullKey) {
+  static String _calculateKeyFromString(String key, String value, String fullKey) {
     String result = "";
     int a = key.codeUnitAt(0);
     int b = int.parse(value);
