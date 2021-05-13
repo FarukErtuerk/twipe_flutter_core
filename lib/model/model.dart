@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
+import '../cache/cache_object.dart';
+import '../cache/cacheable.dart';
 
 /// Model class handles your Data
-abstract class Model {
+abstract class Model with Cacheable {
   @protected
   final Map<String, dynamic> _modelData;
 
@@ -84,5 +86,10 @@ abstract class Model {
   /// Returns Update Date
   int getUpdatedAt() {
     return int.parse(_modelData["updated_at"].toString());
+  }
+
+  @override
+  CacheObject toCacheObject() {
+    return CacheObject(getModelData());
   }
 }
