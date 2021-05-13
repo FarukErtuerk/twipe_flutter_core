@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:twipe_flutter_core/example/network/example_network.dart';
+import 'package:twipe_flutter_core/network/server/server.dart';
+import 'package:twipe_flutter_core/network/server/server_route.dart';
 import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 import 'package:twipe_flutter_core/ui/date/calendar_widget.dart';
 import 'package:twipe_flutter_core/ui/gradient/gradient_text.dart';
@@ -6,6 +9,12 @@ import 'package:twipe_flutter_core/utils/ui/style/ui_text_style.dart';
 
 Future<void> main() async {
   await initialize(configFilePath: ".env.example");
+  ExampleNetwork exampleNetwork = ExampleNetwork("example_network");
+  Server server = await Server.localhost("local_server");
+  server.addRoute(ServerRoute("signup", "/auth/signup"));
+  server.addRoute(ServerRoute("signin", "/auth/signin"));
+  server.addRoute(ServerRoute("user_get", "/user/get/{id}"));
+  exampleNetwork.addServer(server);
   runApp(_ExampleApp());
 }
 
