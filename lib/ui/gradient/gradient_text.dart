@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// Creates Gradient Text
 class GradientText extends StatelessWidget {
@@ -19,6 +20,9 @@ class GradientText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return Container();
+    }
     return ShaderMask(
       shaderCallback: (Rect bounds) {
         final gradient = LinearGradient(

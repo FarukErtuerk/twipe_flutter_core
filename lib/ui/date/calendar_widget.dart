@@ -116,7 +116,13 @@ class CalendarWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildHeader(currentDate, stateSetter),
+                  _buildHeader(currentDate, (value) {
+                    currentDate = value;
+                    stateSetter(() {});
+                  }, (value) {
+                    currentDate = value;
+                    stateSetter(() {});
+                  }),
                   Container(
                     alignment: Alignment.center,
                     child: GridView.count(
@@ -150,7 +156,8 @@ class CalendarWidget extends StatelessWidget {
   }
 
   /// Builds Calendar Header
-  Widget _buildHeader(DateTime currentDate, StateSetter stateSetter) {
+  Widget _buildHeader(DateTime currentDate, ValueChanged<DateTime> onLeft,
+      ValueChanged<DateTime> onRight) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,7 +174,7 @@ class CalendarWidget extends StatelessWidget {
                 month = 12;
               }
               currentDate = new DateTime(year, month, 1);
-              stateSetter(() {});
+              onLeft(currentDate);
             }),
         Container(
           child: Text(
@@ -189,7 +196,7 @@ class CalendarWidget extends StatelessWidget {
                 month = 1;
               }
               currentDate = new DateTime(year, month, 1);
-              stateSetter(() {});
+              onRight(currentDate);
             }),
       ],
     );

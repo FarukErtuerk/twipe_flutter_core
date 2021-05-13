@@ -5,5 +5,5 @@ import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   await initialize();
-  test('testing', () {});
+  test("Testing", () {});
 }
