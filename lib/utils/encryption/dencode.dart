@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 
 class DEncode {
   /// Encodes String
-  @protected
   static Future<String> encode(String key, String value) async {
     List<String> keyList =
         key.runes.map((rune) => String.fromCharCode(rune)).toList();
@@ -35,7 +34,6 @@ class DEncode {
   }
 
   /// Decodes String from encrypted Value
-  @protected
   static Future<String> decode(String key, String value) async {
     List<String> keyList =
         key.runes.map((rune) => String.fromCharCode(rune)).toList();
