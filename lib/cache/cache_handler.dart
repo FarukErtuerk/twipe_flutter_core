@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:twipe_flutter_core/utils/config/environment_handler.dart';
+import 'package:twipe_flutter_core/utils/encryption/dencode.dart';
+
 import 'cache_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +36,7 @@ class CacheHandler {
         List<String> values = sharedPreferences.getStringList(key)!;
         List<CacheObject> result = [];
         values.forEach((element) {
-          Map<dynamic, dynamic> data = jsonDecode(element);
+          Map<dynamic, dynamic> data = jsonDecode(_reApplyCacheKey(element));
           result.add(CacheObject(data.cast()));
         });
         return result;
@@ -60,7 +63,7 @@ class CacheHandler {
           await SharedPreferences.getInstance();
       if (sharedPreferences.containsKey(key)) {
         String value = sharedPreferences.getString(key)!;
-        Map<dynamic, dynamic> data = jsonDecode(value);
+        Map<dynamic, dynamic> data = jsonDecode(_reApplyCacheKey(value));
         return CacheObject(data.cast());
       }
     } catch (e) {
@@ -85,7 +88,7 @@ class CacheHandler {
           await SharedPreferences.getInstance();
       if (!sharedPreferences.containsKey(key) || overwrite) {
         if (await sharedPreferences.setString(
-            key, jsonEncode(cacheObject.data))) {
+            key, _applyCacheKey(jsonEncode(cacheObject.data)))) {
           return true;
         }
       }
@@ -125,10 +128,11 @@ class CacheHandler {
         List<String> newValues = [];
         bool foundInOld = false;
         values.forEach((element) {
-          if (jsonDecode(element)[keyField] == cacheObject.data[keyField]) {
+          if (jsonDecode(_reApplyCacheKey(element))[keyField] ==
+              cacheObject.data[keyField]) {
             foundInOld = true;
             if (overwrite) {
-              newValues.add(jsonEncode(cacheObject.data));
+              newValues.add(_applyCacheKey(jsonEncode(cacheObject.data)));
             } else {
               newValues.add(element);
             }
@@ -137,7 +141,7 @@ class CacheHandler {
           }
         });
         if (!foundInOld) {
-          newValues.add(jsonEncode(cacheObject.data));
+          newValues.add(_applyCacheKey(jsonEncode(cacheObject.data)));
         }
         if (limit != null && limit > 0) {
           while (newValues.length > limit) {
@@ -147,8 +151,8 @@ class CacheHandler {
         await sharedPreferences.setStringList(key, newValues);
         return true;
       } else {
-        if (await sharedPreferences
-            .setStringList(key, [jsonEncode(cacheObject.data)])) {
+        if (await sharedPreferences.setStringList(
+            key, [_applyCacheKey(jsonEncode(cacheObject.data))])) {
           return true;
         }
       }
@@ -177,7 +181,7 @@ class CacheHandler {
         List<String> values = sharedPreferences.getStringList(key)!;
         List<String> newValues = [];
         values.forEach((element) {
-          if (jsonDecode(element)[keyField] != objectId) {
+          if (jsonDecode(_reApplyCacheKey(element))[keyField] != objectId) {
             newValues.add(element);
           }
         });
@@ -196,5 +200,17 @@ class CacheHandler {
       print(e);
     }
     return false;
+  }
+
+  static String _reApplyCacheKey(String value) {
+    return DEncode.decode(
+        EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
+        value);
+  }
+
+  static String _applyCacheKey(String value) {
+    return DEncode.encode(
+        EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
+        value);
   }
 }
