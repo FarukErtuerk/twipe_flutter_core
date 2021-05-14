@@ -9,9 +9,10 @@ import '../network_result.dart';
 class NetworkConfig {
   final int _syncIntervall;
   final String _configId;
-  NetworkConfig(this._configId, this._syncIntervall);
   Map<String, dynamic> _config = {};
   int _lastSync = 0;
+
+  NetworkConfig(this._configId, this._syncIntervall);
 
   /// Synchronize Config Data with Server
   Future<bool> setupFromNetworkRequest(Future<NetworkResult> callback) async {
@@ -30,7 +31,9 @@ class NetworkConfig {
       Map<String, dynamic> result = networkResult.getData();
       _config = result;
       await saveConfig();
-    } catch (e) {}
+    } catch (e) {
+      throw e;
+    }
     return true;
   }
 

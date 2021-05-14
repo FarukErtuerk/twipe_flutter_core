@@ -16,6 +16,17 @@ class EnvironmentHandler {
     } catch (e) {
       throw e;
     }
+    _validate(configFilePath, "CACHE_KEY");
+  }
+
+  static _validate(String configFilePath, String key) {
+    if (!_data.containsKey(key)) {
+      throw Exception("Environment Handler: " +
+          configFilePath +
+          " File not contains : (" +
+          key +
+          ")");
+    }
   }
 
   static String getStringValue(String key, {String defaultValue = ""}) {
