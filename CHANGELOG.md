@@ -1,3 +1,12 @@
+## [0.0.9].
+
+* Cache Key Added
+* Custom Data Added
+* Network Result Extended
+* Network Faker Added
+* Network Faker Database Added
+* Network Faker Database Seeder Added
+
 ## [0.0.7].
 
 * Environment Handler Added
