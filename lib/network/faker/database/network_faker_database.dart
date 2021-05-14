@@ -1,6 +1,5 @@
 import 'package:twipe_flutter_core/cache/cache_handler.dart';
 import 'package:twipe_flutter_core/cache/cache_object.dart';
-import 'package:twipe_flutter_core/model/cached_model.dart';
 import 'package:twipe_flutter_core/model/model.dart';
 
 class NetworkFakerDatabase {
@@ -23,23 +22,16 @@ class NetworkFakerDatabase {
         "network_faker_database_" + _id, model.toCacheObject(), "id");
   }
 
-  Future<Map<String, CachedModel>> getAll() async {
-    List<CacheObject> cache =
-        await CacheHandler.getCacheList("network_faker_database_" + _id);
-    Map<String, CachedModel> result = {};
-    for (CacheObject cacheObject in cache) {
-      CachedModel cachedModel = CachedModel(cacheObject.data);
-      result[cachedModel.getId()] = cachedModel;
-    }
-    return result;
+  Future<List<CacheObject>> getAll() async {
+    return await CacheHandler.getCacheList("network_faker_database_" + _id);
   }
 
-  Future<CachedModel?> getModel(String id) async {
+  Future<CacheObject?> getModel(String id) async {
     CacheObject? cacheObject = await CacheHandler.getCacheObjectFromList(
         "network_faker_database_" + _id, "id", id);
     if (cacheObject == null) {
       return null;
     }
-    return CachedModel(cacheObject.data);
+    return cacheObject;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:twipe_flutter_core/model/cached_model.dart';
 import '../cache/cache_handler.dart';
 import '../cache/cache_object.dart';
 import '../model/model.dart';
@@ -16,25 +15,17 @@ abstract class Collection<T> {
 
   /// Load Model Data From Cache From Cache
   @protected
-  Future<List<CachedModel>> loadModelDataFromCache() async {
-    List<CachedModel> result = [];
-    List<CacheObject> cache =
-        await CacheHandler.getCacheList("collection_" + _id);
-    for (CacheObject cacheObject in cache) {
-      result.add(CachedModel(cacheObject.data));
-    }
-    return result;
+  Future<List<CacheObject>> loadModelDataFromCache() async {
+    return await CacheHandler.getCacheList("collection_" + _id);
   }
 
   /// Save Model to Cache and add to Map
-  Future<bool> saveModel(Model model, {bool applyHiddenFields = true}) async {
+  Future<bool> saveModel(Model model) async {
     if (!model.validate()) {
       return false;
     }
     if (!await CacheHandler.saveCacheObjectToList(
-        "collection_" + _id,
-        CacheObject(model.getModelData(applyHiddenFields: applyHiddenFields)),
-        "id")) {
+        "collection_" + _id, model.toCacheObject(), "id")) {
       return false;
     }
     _models[model.getId()] = model;

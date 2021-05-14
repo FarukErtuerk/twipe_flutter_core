@@ -1,5 +1,4 @@
-import 'package:twipe_flutter_core/model/cached_model.dart';
-
+import 'package:twipe_flutter_core/cache/cache_object.dart';
 import '../collection/collection.dart';
 import 'auth_user.dart';
 
@@ -20,10 +19,10 @@ class Auth extends Collection<AuthUser> {
   /// Loads all AuthUsers
   @override
   Future<void> setup() async {
-    List<CachedModel> cache = await loadModelDataFromCache();
+    List<CacheObject> cache = await loadModelDataFromCache();
     Map<String, AuthUser> result = {};
-    for (CachedModel model in cache) {
-      AuthUser? authUser = createModel(model.getModelData());
+    for (CacheObject cacheObject in cache) {
+      AuthUser? authUser = createModel(cacheObject.data);
       if (authUser != null && authUser.validate()) {
         result[authUser.getId()] = authUser;
       }
