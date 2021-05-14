@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
@@ -13,14 +14,25 @@ class NetworkResult {
   @protected
   final String? _rawData;
 
+  final HttpClientResponse? _response;
+
   /// Converted Data
   @protected
   Map<String, dynamic> _convertedData = {};
 
-  NetworkResult(this._rawData) {
+  @protected
+  NetworkResult(this._rawData, this._response) {
     if (_rawData != null) {
       _convertedData = jsonDecode(_rawData!);
     }
+  }
+
+  factory NetworkResult.fromFaker(String? rawData) {
+    return NetworkResult(rawData, null);
+  }
+
+  factory NetworkResult.build(String? rawData, HttpClientResponse response) {
+    return NetworkResult(rawData, response);
   }
 
   /// Network Result Has Data Body
@@ -64,5 +76,13 @@ class NetworkResult {
       return false;
     }
     return true;
+  }
+
+  bool hasResponse() {
+    return _response != null;
+  }
+
+  HttpClientResponse getResponse() {
+    return _response!;
   }
 }

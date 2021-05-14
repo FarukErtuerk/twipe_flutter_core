@@ -120,7 +120,7 @@ abstract class Network {
 
     /// Process Data
     result = await response.transform(utf8.decoder).join();
-    return NetworkResult(result);
+    return NetworkResult.build(result, response);
   }
 }
 
