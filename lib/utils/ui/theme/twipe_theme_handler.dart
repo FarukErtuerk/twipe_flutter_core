@@ -22,7 +22,8 @@ class TwipeThemeHandler {
           Map<String, dynamic> colors = themeData["colors"];
           Map<String, Color> resultColors = {};
           for (String colorKey in colors.keys) {
-            resultColors[colorKey] = HexColor.fromHex(colors[colorKey]);
+            resultColors[colorKey] =
+                HexColor.fromHex(Field.getString(colors[colorKey], "#FFFFFF"));
           }
           _themes[themeName] = TwipeTheme(
               HexColor.fromHex(
