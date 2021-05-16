@@ -1,0 +1,18 @@
+{
+    "lightTheme": {
+        "primary": "",
+        "accent": "",
+        "semanic": {
+            "succes": "",
+            "error": "",
+            "warning": "",
+            "information": ""
+        },
+        "neutral": {
+            "text": "",
+            "border": "",
+            "icon": ""
+        },
+        "colors": {}
+    }
+}
