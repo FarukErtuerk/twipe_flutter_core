@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:twipe_flutter_core/utils/field/field.dart';
 import '../cache/cache_object.dart';
 import '../cache/cacheable.dart';
 
@@ -73,7 +74,7 @@ abstract class Model with Cacheable {
     return _modelData;
   }
 
-  /// Returns Model ID
+  /// Return Model id
   String getId() {
     return _id!;
   }
@@ -86,6 +87,22 @@ abstract class Model with Cacheable {
   /// Returns Update Date
   int getUpdatedAt() {
     return int.parse(_modelData["updated_at"].toString());
+  }
+
+  String getStringValue(String key, {String defaultValue = ""}) {
+    return Field.getString(_modelData[key], defaultValue);
+  }
+
+  int getIntValue(String key, {int defaultValue = 0}) {
+    return Field.getInt(_modelData[key], defaultValue);
+  }
+
+  bool getBoolValue(String key, {bool defaultValue = false}) {
+    return Field.getBool(_modelData[key], defaultValue);
+  }
+
+  double getDoubleValue(String key, {double defaultValue = 0}) {
+    return Field.getDouble(_modelData[key], defaultValue);
   }
 
   @override

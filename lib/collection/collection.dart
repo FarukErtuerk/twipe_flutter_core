@@ -49,9 +49,14 @@ abstract class Collection<T> {
     return _models.cast<String, T>();
   }
 
+  /// Collection contains Model with id
+  bool hasModel(String id) {
+    return _models.containsKey(id);
+  }
+
   /// Returns Model by Id
-  T getModelById(String id) {
-    return _models[id]!;
+  T? getModelById(String id) {
+    return _models[id];
   }
 
   /// Returns Model With Specific Value
@@ -64,6 +69,6 @@ abstract class Collection<T> {
     return null;
   }
 
-  /// Creates Model From Model Data
+  /// Create new Model from Data
   T? createModel(Map<String, dynamic> modelData);
 }

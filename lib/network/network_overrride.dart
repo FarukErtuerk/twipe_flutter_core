@@ -1,12 +1,17 @@
 import 'dart:io';
+import 'override/skip_bad_certificate.dart';
 
-/// Overrides bad Certificate Callback
-class NetworkOverride extends HttpOverrides {
+/// Overrides Certificate Callback
+class NetworkOverride extends HttpOverrides with SkipBadCerticifate {
+  final bool skipBadCertificate;
+  NetworkOverride({this.skipBadCertificate = true});
+
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     final HttpClient client = super.createHttpClient(context);
-    client.badCertificateCallback =
-        ((X509Certificate cert, String host, int port) => true);
+    if (skipBadCertificate) {
+      client.badCertificateCallback = skip;
+    }
     return client;
   }
 
