@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 
