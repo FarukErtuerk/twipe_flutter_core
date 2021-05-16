@@ -1,6 +1,6 @@
 name: twipe_flutter_core
 description: Twipe Flutter Core
-version: 0.0.9
+version: 0.11.0
 homepage: https://github.com/FarukErtuerk
 repository: https://github.com/FarukErtuerk/twipe_flutter_core
 
@@ -22,3 +22,4 @@ dev_dependencies:
 flutter:
   assets:
    - .env.example
+   - resources/styles/themes.json

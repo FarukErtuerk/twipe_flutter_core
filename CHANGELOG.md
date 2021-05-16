@@ -1,3 +1,9 @@
+## [0.10.0].
+
+* Some Fixes
+* UIColorStyle Removed
+* UITextStyle Removed
+
 ## [0.0.9].
 
 * Cache Key Added
