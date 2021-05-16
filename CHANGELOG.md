@@ -1,3 +1,7 @@
+## [0.11.1].
+
+* TwipeThemeHandler Added
+
 ## [0.10.0].
 
 * Some Fixes

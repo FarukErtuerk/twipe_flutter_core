@@ -44,7 +44,7 @@ class TwipeThemeHandler {
     }
   }
 
-  TwipeTheme getTheme(String key) {
+  static TwipeTheme getTheme(String key) {
     return _themes[key]!;
   }
 }
