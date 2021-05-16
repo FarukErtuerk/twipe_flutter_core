@@ -13,7 +13,6 @@ class TwipeThemeHandler {
       String raw = await rootBundle.loadString("resources/styles/themes.json");
       if (raw.isNotEmpty) {
         Map<String, dynamic> map = jsonDecode(raw);
-
         for (String key in map.keys) {
           String themeName = key;
           Map<String, dynamic> themeData = map[key];

@@ -1,17 +1,17 @@
 {
     "lightTheme": {
-        "primary": "",
-        "accent": "",
+        "primary": "#FFFFFF",
+        "accent": "#FFFFFF",
         "semantic": {
-            "succes": "",
-            "error": "",
-            "warning": "",
-            "information": ""
+            "succes": "#FFFFFF",
+            "error": "#FFFFFF",
+            "warning": "#FFFFFF",
+            "information": "#FFFFFF"
         },
         "neutral": {
-            "text": "",
-            "border": "",
-            "icon": ""
+            "text": "#FFFFFF",
+            "border": "#FFFFFF",
+            "icon": "#FFFFFF"
         },
         "colors": {}
     }
