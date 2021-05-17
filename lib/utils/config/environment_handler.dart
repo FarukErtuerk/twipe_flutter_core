@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart' show rootBundle;
 import '../field/field.dart';
 
@@ -10,7 +12,12 @@ class EnvironmentHandler {
         List<String> columns = raw.split("\n");
         for (String column in columns) {
           List<String> list = column.split("=");
-          _data[list[0]] = list[1];
+          String configListData = Field.getString(list[1], "");
+          if (configListData.startsWith("[") && configListData.endsWith("]")) {
+            _data[list[0]] = jsonDecode(configListData);
+          } else {
+            _data[list[0]] = list[1];
+          }
         }
       }
     } catch (e) {
@@ -27,6 +34,10 @@ class EnvironmentHandler {
           key +
           ")");
     }
+  }
+
+  static List<String> getListString(String key) {
+    return _data[key];
   }
 
   static String getStringValue(String key, {String defaultValue = ""}) {

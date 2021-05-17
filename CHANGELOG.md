@@ -1,3 +1,7 @@
+## [0.11.4].
+
+* JSONHandler Added
+
 ## [0.11.1].
 
 * TwipeThemeHandler Added
