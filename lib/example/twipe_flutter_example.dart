@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:twipe_flutter_core/twipe_flutter_core.dart';
-import 'package:twipe_flutter_core/utils/ui/color/hex_color.dart';
 
 ThemeData lightTheme =
     ThemeData(primaryColor: Colors.blue, backgroundColor: Colors.black);
