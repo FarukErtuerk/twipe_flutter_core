@@ -18,7 +18,7 @@ class JSONHandler {
     }
   }
 
-  Map<String, dynamic> getJSON(String key) {
+  static Map<String, dynamic> getJSON(String key) {
     return _json[key]!;
   }
 }
