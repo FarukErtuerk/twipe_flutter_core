@@ -8,7 +8,8 @@ class JSONHandler {
   static Future<void> setup() async {
     try {
       for (String file in EnvironmentHandler.getListString("JSON_CONFIG")) {
-        String raw = await rootBundle.loadString("resources/json/" + file);
+        String raw =
+            await rootBundle.loadString("resources/json/" + file + ".json");
         Map<String, dynamic> map = jsonDecode(raw);
         _json[file] = map;
       }
