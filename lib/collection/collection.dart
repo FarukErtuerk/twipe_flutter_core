@@ -60,7 +60,7 @@ abstract class Collection<T> {
   }
 
   /// Returns Model With Specific Value
-  T? getModelByFieldValue(String key, String value) {
+  T? getModelByFieldValue(String key, dynamic value) {
     for (dynamic model in _models.values) {
       if (model.getModelData(applyHiddenFields: false)[key] == value) {
         return model as T;

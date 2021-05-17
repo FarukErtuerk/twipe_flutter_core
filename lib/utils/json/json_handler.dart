@@ -21,4 +21,18 @@ class JSONHandler {
   static Map<String, dynamic> getJSON(String key) {
     return _json[key]!;
   }
+
+  static List<Map<String, dynamic>> getJSONListByValue(
+      String key, String value) {
+    List<Map<String, dynamic>> result = [];
+    for (String mapKey in _json.keys) {
+      Map<String, dynamic> map = _json[mapKey]!;
+      if (map.containsKey(key)) {
+        if (map[key] == value) {
+          result.add(map);
+        }
+      }
+    }
+    return result;
+  }
 }
