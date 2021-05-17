@@ -14,7 +14,7 @@ class EnvironmentHandler {
           List<String> list = column.split("=");
           String configListData = Field.getString(list[1], "");
           if (configListData.startsWith("[") && configListData.endsWith("]")) {
-            _data[list[0]] = jsonDecode(configListData);
+            _data[list[0]] = jsonDecode(configListData).cast<List<dynamic>>();
           } else {
             _data[list[0]] = list[1];
           }
@@ -37,7 +37,7 @@ class EnvironmentHandler {
   }
 
   static List<String> getListString(String key) {
-    return _data[key];
+    return _data[key].cast<List<String>>();
   }
 
   static String getStringValue(String key, {String defaultValue = ""}) {
