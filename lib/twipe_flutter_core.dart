@@ -1,6 +1,7 @@
 library twipe_flutter_core;
 
 import 'package:flutter/material.dart';
+import 'package:twipe_flutter_core/utils/config/configuration.dart';
 import 'package:twipe_flutter_core/utils/config/environment_handler.dart';
 import 'package:twipe_flutter_core/utils/json/json_handler.dart';
 import 'package:twipe_flutter_core/utils/ui/theme/twipe_theme.dart';
@@ -12,6 +13,7 @@ class TwipeFlutterCore {
     WidgetsFlutterBinding.ensureInitialized();
     await EnvironmentHandler.setup(configFilePath: configFilePath);
     await JSONHandler.setup();
+    Configuration();
     await TwipeTheme.setup();
   }
 }

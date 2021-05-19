@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-class DEncode {
+class Crypt {
   /// Encodes String
-  static String encode(String key, String value) {
+  static String encrypt(String key, String value) {
     if (key.isEmpty) {
       return value;
     }
@@ -38,7 +38,7 @@ class DEncode {
   }
 
   /// Decodes String from encrypted Value
-  static String decode(String key, String value) {
+  static String decrypt(String key, String value) {
     if (key.isEmpty) {
       return value;
     }

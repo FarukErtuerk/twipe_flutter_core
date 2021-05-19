@@ -5,10 +5,10 @@ import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 
 Future<void> main() async {
   await TwipeFlutterCore.initialize(configFilePath: '.env.example');
-  runApp(_DevApp());
+  runApp(DevApp());
 }
 
-class _DevApp extends StatelessWidget {
+class DevApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

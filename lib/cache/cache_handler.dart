@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:twipe_flutter_core/utils/config/environment_handler.dart';
-import 'package:twipe_flutter_core/utils/encryption/dencode.dart';
-
-import 'cache_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/config/environment_handler.dart';
+import '../utils/encryption/crypt.dart';
+import 'cache_object.dart';
 
 class CacheHandler {
   /// Clear current Cache
@@ -203,13 +203,13 @@ class CacheHandler {
   }
 
   static String _reApplyCacheKey(String value) {
-    return DEncode.decode(
+    return Crypt.decrypt(
         EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
         value);
   }
 
   static String _applyCacheKey(String value) {
-    return DEncode.encode(
+    return Crypt.encrypt(
         EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
         value);
   }

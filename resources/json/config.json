@@ -1,0 +1,11 @@
+{
+    "dimension": {
+        "mobile_small": 320,
+        "mobile_medium": 375,
+        "mobile_large": 425,
+        "tablet": 768,
+        "laptop": 1024,
+        "laptop_large": 1440,
+        "four_k": 2560
+    }
+}

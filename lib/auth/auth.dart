@@ -6,7 +6,7 @@ import 'auth_user.dart';
 class Auth extends Collection<AuthUser> {
   Auth(String authenticatorId) : super(authenticatorId);
 
-  /// Creates AuthUser From Model Data
+  /// Creates `AuthUser` From Model Data
   @override
   AuthUser? createModel(Map<String, dynamic> modelData) {
     AuthUser result = AuthUser(modelData);
@@ -16,7 +16,7 @@ class Auth extends Collection<AuthUser> {
     return result;
   }
 
-  /// Loads all AuthUsers
+  /// Loads all `AuthUsers`
   @override
   Future<void> setup() async {
     List<CacheObject> cache = await loadModelDataFromCache();
