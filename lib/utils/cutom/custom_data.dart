@@ -1,7 +1,7 @@
 import 'dart:math';
 
 class CustomData {
-  final List<String> names = [
+  static final List<String> names = [
     "Cleo",
     "Jhon",
     "Paul",
@@ -14,32 +14,32 @@ class CustomData {
     "Angelina"
   ];
 
-  String getName() {
+  static String getName() {
     return getRandomFromList(names);
   }
 
-  dynamic getRandomFromList(List<dynamic> list) {
+  static dynamic getRandomFromList(List<dynamic> list) {
     return list[Random().nextInt(list.length)];
   }
 
-  int getInt() {
-    return Random().nextInt(double.infinity.toInt());
+  static int getInt() {
+    return Random().nextDouble().toInt();
   }
 
-  double getDouble() {
+  static double getDouble() {
     return Random().nextDouble();
   }
 
-  bool getBool() {
+  static bool getBool() {
     return Random().nextBool();
   }
 
-  DateTime getDateTimePast() {
+  static DateTime getDateTimePast() {
     return DateTime.now()
         .subtract(Duration(minutes: Random().nextInt(100000), hours: 1));
   }
 
-  DateTime getDateTimeFuture() {
+  static DateTime getDateTimeFuture() {
     return DateTime.now()
         .subtract(Duration(minutes: Random().nextInt(100000), hours: 1));
   }

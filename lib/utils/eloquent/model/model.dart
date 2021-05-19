@@ -29,7 +29,11 @@ abstract class Model with Cacheable {
     if (!_modelData.containsKey("id")) {
       throw UnsupportedError("Model Requires Field :id");
     }
-    this._id = _modelData["id"];
+    this._id = Field.getString(_modelData["id"], "");
+
+    if (this._id!.isEmpty) {
+      throw UnsupportedError("Model Requires Field :id");
+    }
   }
 
   /// Validates Model Data

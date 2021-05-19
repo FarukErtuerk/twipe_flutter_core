@@ -1,15 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:twipe_flutter_core/utils/resources/resources.dart';
 import '../field/field.dart';
 
-class EnvironmentHandler {
+class Environment {
   static Map<String, dynamic> _data = {};
-  static Future<void> setup({String configFilePath = ".env"}) async {
+  static Future<void> setup({String? configFilePath}) async {
+    configFilePath = configFilePath ?? Resources.getResource('.env');
     try {
       String raw = await rootBundle.loadString(configFilePath);
       if (raw.isNotEmpty && raw.contains("=")) {
-        List<String> columns = raw.split("\n");
+        List<String> columns = raw.split("\r\n");
         for (String column in columns) {
           List<String> list = column.split("=");
           String configListData = Field.getString(list[1], "");
@@ -24,6 +26,7 @@ class EnvironmentHandler {
       throw e;
     }
     _validate(configFilePath, "CACHE_KEY");
+    _validate(configFilePath, "JSON_FILES");
   }
 
   static _validate(String configFilePath, String key) {

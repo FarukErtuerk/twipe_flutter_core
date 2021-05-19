@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../utils/config/environment_handler.dart';
+import '../utils/config/environment.dart';
 import '../utils/encryption/crypt.dart';
 import 'cache_object.dart';
 
@@ -204,13 +204,11 @@ class CacheHandler {
 
   static String _reApplyCacheKey(String value) {
     return Crypt.decrypt(
-        EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
-        value);
+        Environment.getStringValue("CACHE_KEY", defaultValue: ""), value);
   }
 
   static String _applyCacheKey(String value) {
     return Crypt.encrypt(
-        EnvironmentHandler.getStringValue("CACHE_KEY", defaultValue: ""),
-        value);
+        Environment.getStringValue("CACHE_KEY", defaultValue: ""), value);
   }
 }

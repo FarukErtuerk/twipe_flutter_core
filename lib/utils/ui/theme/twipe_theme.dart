@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:twipe_flutter_core/utils/field/field.dart';
+import 'package:twipe_flutter_core/utils/resources/resources.dart';
 import 'package:twipe_flutter_core/utils/ui/color/hex_color.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -38,7 +39,8 @@ class TwipeTheme {
   static Map<String, TwipeTheme> _themes = {};
   static Future<void> setup() async {
     try {
-      String raw = await rootBundle.loadString("resources/style/themes.json");
+      String raw =
+          await rootBundle.loadString(Resources.getStylePath('themes'));
       if (raw.isNotEmpty) {
         Map<String, dynamic> map = jsonDecode(raw);
         for (String key in map.keys) {

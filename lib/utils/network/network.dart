@@ -52,17 +52,17 @@ abstract class Network {
   @protected
   Future<NetworkResult> _callServer(Server server, ServerRoute serverRoute,
       Uri uri, int requestType, Map<String, dynamic>? data) async {
-    String result = "";
-    HttpClient client = new HttpClient();
-
-    client.badCertificateCallback =
-        ((X509Certificate cert, String host, int port) => true);
-
     /// Check if NetworkFaker contains Route.
     if (NetworkFaker.hasRoute(serverRoute.getId())) {
       return await NetworkFaker.getRoute(serverRoute.getId()).callback(
           NetworkFakerRequest(server, serverRoute, data, requestType, uri));
     }
+
+    String result = "";
+    HttpClient client = new HttpClient();
+
+    client.badCertificateCallback =
+        ((X509Certificate cert, String host, int port) => true);
 
     /// Creates the actual Network Request.
     HttpClientRequest request = await client.postUrl(uri);

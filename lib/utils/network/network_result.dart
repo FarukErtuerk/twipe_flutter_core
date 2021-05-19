@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 ///   data:value
 /// }
 class NetworkResult {
+  static final String done = 'done';
+
   /// Raw Data
   @protected
   final String? _rawData;
@@ -56,7 +58,7 @@ class NetworkResult {
     if (!_convertedData.containsKey("status")) {
       return true;
     }
-    if (_convertedData["status"] != "done") {
+    if (_convertedData["status"] != done) {
       return true;
     }
     return false;
@@ -72,7 +74,7 @@ class NetworkResult {
     if (!_convertedData.containsKey("status")) {
       return false;
     }
-    if (_convertedData["status"] != "done") {
+    if (_convertedData["status"] != done) {
       return false;
     }
     return true;
