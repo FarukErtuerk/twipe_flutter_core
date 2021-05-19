@@ -1,5 +1,5 @@
-import 'package:twipe_flutter_core/model/model.dart';
-import 'package:twipe_flutter_core/network/faker/database/network_faker_database.dart';
+import 'package:twipe_flutter_core/utils/eloquent/model/model.dart';
+import 'network_faker_database.dart';
 
 class NetworkFakerDatabaseSeeder {
   static Map<String, Model> _toSeed = {};

@@ -1,4 +1,4 @@
-import 'package:twipe_flutter_core/network/faker/network_faker_route.dart';
+import 'network_faker_route.dart';
 
 class NetworkFaker {
   static Map<String, NetworkFakerRoute> _routes = {};

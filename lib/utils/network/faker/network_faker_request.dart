@@ -1,5 +1,5 @@
-import 'package:twipe_flutter_core/network/server/server.dart';
-import 'package:twipe_flutter_core/network/server/server_route.dart';
+import 'package:twipe_flutter_core/utils/network/server/server.dart';
+import 'package:twipe_flutter_core/utils/network/server/server_route.dart';
 
 class NetworkFakerRequest {
   final Server server;

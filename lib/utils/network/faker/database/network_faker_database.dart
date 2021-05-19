@@ -1,6 +1,6 @@
 import 'package:twipe_flutter_core/cache/cache_handler.dart';
 import 'package:twipe_flutter_core/cache/cache_object.dart';
-import 'package:twipe_flutter_core/model/model.dart';
+import 'package:twipe_flutter_core/utils/eloquent/model/model.dart';
 
 class NetworkFakerDatabase {
   final String _id;

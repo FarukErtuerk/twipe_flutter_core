@@ -8,7 +8,7 @@ import 'utils/configuration_test.dart';
 /// This will Test our Library
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-  await TwipeFlutterCore.initialize(configFilePath: '.env.example');
+  await TwipeFlutterCore.initialize(configFilePath: 'resources/.env.example');
   Test _test = Test();
   _test.add(ConfigurationTest());
   _test.add(AppTester());

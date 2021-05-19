@@ -21,6 +21,6 @@ dev_dependencies:
 
 flutter:
   assets:
-    - .env.example
     - resources/style/
     - resources/json/
+    - resources/

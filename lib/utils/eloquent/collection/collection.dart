@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import '../cache/cache_handler.dart';
-import '../cache/cache_object.dart';
+import '../../../cache/cache_handler.dart';
+import '../../../cache/cache_object.dart';
 import '../model/model.dart';
 
 /// Collection class contains Models and handles them

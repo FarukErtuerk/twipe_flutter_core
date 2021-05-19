@@ -1,5 +1,5 @@
 import 'package:twipe_flutter_core/cache/cache_object.dart';
-import '../collection/collection.dart';
+import '../eloquent/collection/collection.dart';
 import 'auth_user.dart';
 
 /// Auth class. Use this for signing in or signing up in your Cloud Services or whatever

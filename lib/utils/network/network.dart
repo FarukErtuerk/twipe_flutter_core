@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:twipe_flutter_core/network/faker/network_faker.dart';
 
+import 'faker/network_faker.dart';
 import 'faker/network_faker_request.dart';
 import 'network_result.dart';
 import 'server/server.dart';

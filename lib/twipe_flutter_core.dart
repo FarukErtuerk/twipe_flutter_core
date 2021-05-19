@@ -9,7 +9,8 @@ import 'package:twipe_flutter_core/utils/ui/theme/twipe_theme.dart';
 /// Setup Twipe Library
 /// Loads Environment Handler
 class TwipeFlutterCore {
-  static Future<void> initialize({String configFilePath = ".env"}) async {
+  static Future<void> initialize(
+      {String configFilePath = "resources/.env"}) async {
     WidgetsFlutterBinding.ensureInitialized();
     await EnvironmentHandler.setup(configFilePath: configFilePath);
     await JSONHandler.setup();

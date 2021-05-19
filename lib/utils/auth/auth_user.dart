@@ -1,4 +1,4 @@
-import '../model/model.dart';
+import '../eloquent/model/model.dart';
 
 /// AuthUser class provides you a complete Model
 class AuthUser extends Model {
