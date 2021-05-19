@@ -4,6 +4,6 @@ import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 /// This will Test the Library
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-  await initialize();
-  test("Testing", () {});
+  await TwipeFlutterCore.initialize(configFilePath: 'env.example');
+  test('Testing', () {});
 }

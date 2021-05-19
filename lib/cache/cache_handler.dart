@@ -6,27 +6,27 @@ import 'cache_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHandler {
-  /// Clears Cache
+  /// Clear current Cache
   static Future<bool> clear() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return await sharedPreferences.clear();
   }
 
-  /// Get Cache Object from List<CacheObject> with value
+  /// Get `CacheObject` from List<CacheObject> with value
   static Future<CacheObject?> getCacheObjectFromList(
       String key, String objectKey, String objectKeyValue,
       {bool deleteOnError = true}) async {
     List<CacheObject> cache =
         await getCacheList(key, deleteOnError: deleteOnError);
     for (CacheObject cacheObject in cache) {
-      if (cacheObject.data[objectKey] == objectKeyValue) {
+      if (cacheObject.getData()[objectKey] == objectKeyValue) {
         return cacheObject;
       }
     }
     return null;
   }
 
-  /// Get Cache List
+  /// Get `List<CacheObject>`
   static Future<List<CacheObject>> getCacheList(String key,
       {bool deleteOnError = true}) async {
     try {
@@ -88,7 +88,7 @@ class CacheHandler {
           await SharedPreferences.getInstance();
       if (!sharedPreferences.containsKey(key) || overwrite) {
         if (await sharedPreferences.setString(
-            key, _applyCacheKey(jsonEncode(cacheObject.data)))) {
+            key, _applyCacheKey(jsonEncode(cacheObject.getData())))) {
           return true;
         }
       }
@@ -129,10 +129,10 @@ class CacheHandler {
         bool foundInOld = false;
         values.forEach((element) {
           if (jsonDecode(_reApplyCacheKey(element))[keyField] ==
-              cacheObject.data[keyField]) {
+              cacheObject.getData()[keyField]) {
             foundInOld = true;
             if (overwrite) {
-              newValues.add(_applyCacheKey(jsonEncode(cacheObject.data)));
+              newValues.add(_applyCacheKey(jsonEncode(cacheObject.getData())));
             } else {
               newValues.add(element);
             }
@@ -141,7 +141,7 @@ class CacheHandler {
           }
         });
         if (!foundInOld) {
-          newValues.add(_applyCacheKey(jsonEncode(cacheObject.data)));
+          newValues.add(_applyCacheKey(jsonEncode(cacheObject.getData())));
         }
         if (limit != null && limit > 0) {
           while (newValues.length > limit) {
@@ -152,7 +152,7 @@ class CacheHandler {
         return true;
       } else {
         if (await sharedPreferences.setStringList(
-            key, [_applyCacheKey(jsonEncode(cacheObject.data))])) {
+            key, [_applyCacheKey(jsonEncode(cacheObject.getData()))])) {
           return true;
         }
       }

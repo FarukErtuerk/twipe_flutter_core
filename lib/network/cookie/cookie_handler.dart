@@ -37,8 +37,8 @@ class CookieHandler {
     List<CacheObject> cache =
         await CacheHandler.getCacheList("server_" + _id + "_cookies");
     for (CacheObject cacheObject in cache) {
-      _cookies[cacheObject.data["id"]] =
-          new Cookie(cacheObject.data["id"], cacheObject.data["value"]);
+      _cookies[cacheObject.getData()["id"]] = new Cookie(
+          cacheObject.getData()["id"], cacheObject.getData()["value"]);
     }
   }
 

@@ -7,7 +7,7 @@ class JSONHandler {
   static Map<String, Map<String, dynamic>> _json = {};
   static Future<void> setup() async {
     try {
-      for (String file in EnvironmentHandler.getList("JSON_CONFIG")) {
+      for (String file in EnvironmentHandler.getList("JSON_FILES")) {
         String raw =
             await rootBundle.loadString("resources/json/" + file + ".json");
         Map<String, dynamic> map = jsonDecode(raw);

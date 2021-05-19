@@ -1,11 +1,15 @@
 /// Cache Object class to Handle Data
 class CacheObject {
-  Map<String, dynamic> data;
+  final Map<String, dynamic> _data;
 
-  CacheObject(this.data);
+  CacheObject(this._data);
 
   /// CacheObject has Data
   bool hasData() {
-    return data.isNotEmpty;
+    return _data.isNotEmpty;
+  }
+
+  Map<String, dynamic> getData() {
+    return _data;
   }
 }

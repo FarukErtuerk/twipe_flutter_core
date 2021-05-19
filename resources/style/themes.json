@@ -1,0 +1,19 @@
+{
+    "lightTheme": {
+        "primary": "",
+        "secondary": "",
+        "accent": "",
+        "semantic": {
+            "succes": "",
+            "error": "",
+            "warning": "",
+            "information": ""
+        },
+        "neutral": {
+            "text": "",
+            "border": "",
+            "icon": ""
+        },
+        "colors": {}
+    }
+}

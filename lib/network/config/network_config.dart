@@ -61,8 +61,8 @@ class NetworkConfig {
     if (cacheObject == null) {
       return;
     }
-    _lastSync = Field.getInt(cacheObject.data["lastSync"], 0);
-    _config = Field.parseMapStringDynamic(cacheObject.data["config"], {});
+    _lastSync = Field.getInt(cacheObject.getData()["lastSync"], 0);
+    _config = Field.parseMapStringDynamic(cacheObject.getData()["config"], {});
   }
 
   /// Returns Network Config

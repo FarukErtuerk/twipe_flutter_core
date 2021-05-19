@@ -19,8 +19,7 @@ dev_dependencies:
     sdk: flutter
 
 
-flutter:
-#  assets:
-#   - .env.example
-#   - resources/styles/themes.json
-#   - resources/json/
+flutter_test:
+  assets:
+    - .env.example
+    - resources/style/themes.json
