@@ -22,7 +22,7 @@ class Auth extends Collection<AuthUser> {
     List<CacheObject> cache = await loadModelDataFromCache();
     Map<String, AuthUser> result = {};
     for (CacheObject cacheObject in cache) {
-      AuthUser? authUser = createModel(cacheObject.data);
+      AuthUser? authUser = createModel(cacheObject.getData());
       if (authUser != null && authUser.validate()) {
         result[authUser.getId()] = authUser;
       }
