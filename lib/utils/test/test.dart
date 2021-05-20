@@ -1,5 +1,6 @@
 import 'package:twipe_flutter_core/utils/test/tester.dart';
 
+/// Use this when creating Tests
 class Test {
   List<Tester> _testerList = [];
   Test add(Tester tester) {

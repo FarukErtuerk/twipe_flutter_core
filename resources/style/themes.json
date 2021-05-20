@@ -1,19 +1,21 @@
 {
     "example": {
-        "primary": "",
-        "secondary": "",
-        "accent": "",
+        "primary": "#A72608",
+        "secondary": "#BBC5AA",
+        "accent": "#E6EED6",
         "semantic": {
-            "succes": "",
-            "error": "",
-            "warning": "",
-            "information": ""
+            "succes": "#06D6A0",
+            "error": "#EF476F",
+            "warning": "#FFD166",
+            "information": "#615756"
         },
         "neutral": {
-            "text": "",
-            "border": "",
-            "icon": ""
+            "text": "#FFFFFF",
+            "border": "#FFFFFF",
+            "icon": "#FFFFFF"
         },
-        "colors": {}
+        "colors": {
+            "darkest": "#090C02"
+        }
     }
 }

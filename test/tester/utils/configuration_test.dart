@@ -14,13 +14,13 @@ class ConfigurationTest extends Tester {
     testDimension(2560, Configuration.getDimension().fourK);
   }
 
-  void testDimension(double expection, double value) {
+  void testDimension(double expected, double actual) {
     test(
-        'Testing Dimensions Expect:' +
-            expection.toString() +
-            " Value:" +
-            value.toString(), () {
-      expect(expection, value);
+        'Testing Dimensions Expected:' +
+            expected.toString() +
+            " Actual:" +
+            actual.toString(), () {
+      expect(actual, expected);
     });
   }
 }

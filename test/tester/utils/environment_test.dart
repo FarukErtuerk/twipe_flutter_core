@@ -9,13 +9,13 @@ class EnvironmentTest extends Tester {
     testKey(["config"], Environment.getList('JSON_FILES'));
   }
 
-  void testKey(dynamic expectation, dynamic value) {
+  void testKey(dynamic expected, dynamic actual) {
     test(
-        'Environment Test Expectation: ' +
-            expectation.toString() +
-            ' Value: ' +
-            value.toString(), () {
-      expect(expectation, value);
+        'Environment Test Expected: ' +
+            expected.toString() +
+            ' Acual: ' +
+            actual.toString(), () {
+      expect(actual, expected);
     });
   }
 }
