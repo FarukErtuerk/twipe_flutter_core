@@ -18,6 +18,16 @@ class JSONHandler {
     }
   }
 
+  static Future<void> loadFromRootAsJSON(String fullPath, String id) async {
+    try {
+      String raw = await rootBundle.loadString(fullPath);
+      Map<String, dynamic> map = jsonDecode(raw);
+      _json[id] = map;
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static Map<String, dynamic> getJSON(String key) {
     return _json[key]!;
   }
