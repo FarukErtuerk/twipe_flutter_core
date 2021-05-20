@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utils/config/environment.dart';
-import '../utils/encryption/crypt.dart';
+import '../../utils/config/environment.dart';
+import '../../utils/encryption/crypt.dart';
 import 'cache_object.dart';
 
 class CacheHandler {

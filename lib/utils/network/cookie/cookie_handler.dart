@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import '../../../cache/cache_handler.dart';
-import '../../../cache/cache_object.dart';
+import '../../cache/cache_handler.dart';
+import '../../cache/cache_object.dart';
 
 class CookieHandler {
   /// Cookie Handler Id

@@ -1,5 +1,5 @@
-import 'package:twipe_flutter_core/cache/cache_handler.dart';
-import 'package:twipe_flutter_core/cache/cache_object.dart';
+import '../../../cache/cache_handler.dart';
+import '../../../cache/cache_object.dart';
 import 'package:twipe_flutter_core/utils/eloquent/model/model.dart';
 
 class NetworkFakerDatabase {

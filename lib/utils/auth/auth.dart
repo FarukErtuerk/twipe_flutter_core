@@ -1,4 +1,4 @@
-import 'package:twipe_flutter_core/cache/cache_object.dart';
+import '../cache/cache_object.dart';
 import '../eloquent/collection/collection.dart';
 import 'auth_user.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:twipe_flutter_core/utils/field/field.dart';
-import '../../../cache/cache_object.dart';
-import '../../../cache/cacheable.dart';
+import '../../cache/cache_object.dart';
+import '../../cache/cacheable.dart';
 
 /// Model class handles your Data
 abstract class Model with Cacheable {
