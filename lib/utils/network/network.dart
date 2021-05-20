@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 
 import 'faker/network_faker.dart';
 import 'faker/network_faker_request.dart';
@@ -15,10 +16,21 @@ abstract class Network {
   @protected
   final String _id;
 
+  bool _running = false;
+
   /// List of Servers in this Network
   Map<String, Server> _server = {};
 
   Network(this._id);
+
+  void start() {
+    _running = true;
+    TwipeFlutterCore.addNetwork(this);
+  }
+
+  void stop() {
+    _running = false;
+  }
 
   /// Adds Server To Network
   void addServer(Server server) {
@@ -40,6 +52,9 @@ abstract class Network {
       {int requestType = NetworkRequestType.POST,
       Map<String, dynamic>? data,
       Map<String, String>? replacements}) async {
+    if (!_running) {
+      throw UnsupportedError('Network: ' + getId() + ' is not running!');
+    }
     Server server = getServer(serverId);
     Uri uri = server.getUri(routeId: routeId, replacements: replacements);
     ServerRoute serverRoute = server.getRoute(routeId);

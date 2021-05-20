@@ -3,7 +3,7 @@ import 'package:twipe_flutter_core/utils/auth/auth.dart';
 import 'package:twipe_flutter_core/utils/auth/auth_user.dart';
 import 'package:twipe_flutter_core/utils/network/network_result.dart';
 import 'package:twipe_flutter_core/utils/test/tester.dart';
-import '../../helper/helper.dart';
+import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 
 class NetworkTester extends Tester {
   Auth auth = Auth('users');
@@ -16,7 +16,8 @@ class NetworkTester extends Tester {
   Future<void> userCanBeCreated() async {
     test('Test Authentication', () async {
       NetworkResult networkResult =
-          await Helper.getNetwork().call('test_server', 'test_route_create');
+          await TwipeFlutterCore.getNetwork('test_network')
+              .call('test_server', 'test_route_create');
       AuthUser? authUser = auth.createModel(networkResult.getData());
       expect(authUser == null, false);
     });
