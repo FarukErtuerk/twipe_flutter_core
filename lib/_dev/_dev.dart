@@ -4,7 +4,8 @@ import 'package:twipe_flutter_core/_dev/_pages/_main_page.dart';
 import 'package:twipe_flutter_core/twipe_flutter_core.dart';
 
 Future<void> main() async {
-  await TwipeFlutterCore.initialize(configFilePath: 'resources/.env.example');
+  await TwipeFlutterCore.initialize(
+      environmentFilePath: 'resources/env.env.example');
   runApp(DevApp());
 }
 
