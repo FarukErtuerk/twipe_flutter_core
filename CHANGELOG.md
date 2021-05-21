@@ -1,3 +1,7 @@
+## [0.12.4].
+
+* .env moved to resources/env.env (Web Support)
+
 ## [0.11.4].
 
 * JSONHandler Added

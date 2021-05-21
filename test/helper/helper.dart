@@ -8,7 +8,8 @@ import 'networking/test_network.dart';
 
 class Helper {
   Future<void> initialize() async {
-    await TwipeFlutterCore.initialize(configFilePath: 'resources/.env.example');
+    await TwipeFlutterCore.initialize(
+        configFilePath: 'resources/env.env.example');
     TestNetwork _testNetwork = TestNetwork('test_network');
     Server server = await Server.localhost('test_server');
     server.addRoute(ServerRoute('test_route_create', 'test/auth/create'));

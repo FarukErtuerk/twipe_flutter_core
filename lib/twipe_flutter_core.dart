@@ -16,7 +16,8 @@ class TwipeFlutterCore {
   static Future<void> initialize({String? configFilePath}) async {
     WidgetsFlutterBinding.ensureInitialized();
     await Environment.setup(
-        configFilePath: configFilePath ?? Resources.getResource('.env'));
+        configFilePath:
+            configFilePath ?? Resources.getResource('resources/env.env'));
     await JSONHandler.setup();
     Configuration();
     await TwipeTheme.setup();

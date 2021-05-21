@@ -7,7 +7,8 @@ import '../field/field.dart';
 class Environment {
   static Map<String, dynamic> _data = {};
   static Future<void> setup({String? configFilePath}) async {
-    configFilePath = configFilePath ?? Resources.getResource('.env');
+    configFilePath =
+        configFilePath ?? Resources.getResource('resources/env.env');
     try {
       String raw = await rootBundle.loadString(configFilePath);
       if (raw.isNotEmpty && raw.contains("=")) {
