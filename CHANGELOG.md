@@ -1,3 +1,7 @@
+## [0.12.5].
+
+* Configuration improvements
+
 ## [0.12.4].
 
 * .env moved to resources/env.env (Web Support)
