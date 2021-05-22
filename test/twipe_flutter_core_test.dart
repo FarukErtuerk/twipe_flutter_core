@@ -14,17 +14,16 @@ Future<void> main() async {
   /// Initialize Project
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  Helper helper = Helper();
-  await helper.initialize();
+  await Helper().initialize();
 
   /// Do Test
-  Test _test = Test();
-  _test.add(ConfigurationTest());
-  _test.add(EnvironmentTest());
-  _test.add(EncryptionTester());
-  _test.add(FieldTester());
-  _test.add(NetworkTester());
-  _test.add(ThemeTester());
-  _test.add(AppTester());
-  await _test.doTest();
+  await Test()
+      .add(ConfigurationTest())
+      .add(EnvironmentTest())
+      .add(EncryptionTester())
+      .add(FieldTester())
+      .add(NetworkTester())
+      .add(ThemeTester())
+      .add(AppTester())
+      .doTest();
 }
