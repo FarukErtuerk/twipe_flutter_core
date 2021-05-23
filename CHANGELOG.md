@@ -1,3 +1,7 @@
+## [0.12.6].
+
+* Responsive Font Size Added
+
 ## [0.12.5].
 
 * Configuration improvements

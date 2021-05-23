@@ -6,8 +6,33 @@ class Configuration {
   static Dimension _dimension =
       Dimension.fromMap(JSONHandler.getJSON('config')['dimension']);
 
+  /// Returns `Dimension`
   static Dimension getDimension() {
     return _dimension;
+  }
+
+  /// Returns Responsive Font Size declared in `resources/json/config.json`
+  static double getFontSize(BuildContext context, String text) {
+    if (isScreen(context, mobileSmall: true)) {
+      return Field.getDouble(_dimension.textMobileSmall[text], 0);
+    }
+    if (isScreen(context, mobileMedium: true)) {
+      return Field.getDouble(_dimension.textMobileMedium[text], 0);
+    }
+    if (isScreen(context, mobileLarge: true)) {
+      return Field.getDouble(_dimension.textMobileLarge[text], 0);
+    }
+    if (isScreen(context, tablet: true)) {
+      return Field.getDouble(_dimension.textTablet[text], 0);
+    }
+    if (isScreen(context, laptop: true)) {
+      return Field.getDouble(_dimension.textLaptop[text], 0);
+    }
+    if (isScreen(context, laptopLarge: true)) {
+      return Field.getDouble(_dimension.textLaptopLarge[text], 0);
+    }
+
+    return Field.getDouble(_dimension.textFourK[text], 0);
   }
 
   /// Screen `equals` or is `greater` than.
@@ -55,17 +80,49 @@ class Dimension {
   final double laptopLarge;
   final double fourK;
 
-  Dimension(this.mobileSmall, this.mobileMedium, this.mobileLarge, this.tablet,
-      this.laptop, this.laptopLarge, this.fourK);
+  final Map<String, dynamic> textMobileSmall;
+  final Map<String, dynamic> textMobileMedium;
+
+  final Map<String, dynamic> textMobileLarge;
+
+  final Map<String, dynamic> textTablet;
+
+  final Map<String, dynamic> textLaptop;
+
+  final Map<String, dynamic> textLaptopLarge;
+
+  final Map<String, dynamic> textFourK;
+  Dimension(
+      this.mobileSmall,
+      this.mobileMedium,
+      this.mobileLarge,
+      this.tablet,
+      this.laptop,
+      this.laptopLarge,
+      this.fourK,
+      this.textMobileSmall,
+      this.textMobileMedium,
+      this.textMobileLarge,
+      this.textTablet,
+      this.textLaptop,
+      this.textLaptopLarge,
+      this.textFourK);
 
   factory Dimension.fromMap(Map<String, dynamic> map) {
     return Dimension(
-        Field.getDouble(map['mobile_small'], 320),
-        Field.getDouble(map['mobile_medium'], 375),
-        Field.getDouble(map['mobile_large'], 425),
-        Field.getDouble(map['tablet'], 768),
-        Field.getDouble(map['laptop'], 1024),
-        Field.getDouble(map['laptop_large'], 1440),
-        Field.getDouble(map['four_k'], 2560));
+        Field.getDouble(map['mobile_small']['size'], 320),
+        Field.getDouble(map['mobile_medium']['size'], 375),
+        Field.getDouble(map['mobile_large']['size'], 425),
+        Field.getDouble(map['tablet']['size'], 768),
+        Field.getDouble(map['laptop']['size'], 1024),
+        Field.getDouble(map['laptop_large']['size'], 1440),
+        Field.getDouble(map['four_k']['size'], 2560),
+        map['mobile_small']['text'],
+        map['mobile_medium']['text'],
+        map['mobile_large']['text'],
+        map['tablet']['text'],
+        map['laptop']['text'],
+        map['laptop_large']['text'],
+        map['four_k']['text']);
   }
 }
