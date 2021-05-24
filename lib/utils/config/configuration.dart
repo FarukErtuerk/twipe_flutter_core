@@ -3,36 +3,40 @@ import 'package:twipe_flutter_core/utils/field/field.dart';
 import 'package:twipe_flutter_core/utils/json/json_handler.dart';
 
 class Configuration {
-  static Dimension _dimension =
-      Dimension.fromMap(JSONHandler.getJSON('config')['dimension']);
+  static Dimension? _dimension;
+
+  static void setup() {
+    _dimension = Dimension.fromMap(JSONHandler.getJSON('config')['dimension']);
+  }
 
   /// Returns `Dimension`
   static Dimension getDimension() {
-    return _dimension;
+    return _dimension!;
   }
 
   /// Returns Responsive Font Size declared in `resources/json/config.json`
-  static double getFontSize(BuildContext context, String text) {
+  static double getFontSize(BuildContext context, String text,
+      {double defaulValue = 0}) {
     if (isScreen(context, mobileSmall: true)) {
-      return Field.getDouble(_dimension.textMobileSmall[text], 0);
+      return Field.getDouble(_dimension!.textMobileSmall[text], defaulValue);
     }
     if (isScreen(context, mobileMedium: true)) {
-      return Field.getDouble(_dimension.textMobileMedium[text], 0);
+      return Field.getDouble(_dimension!.textMobileMedium[text], defaulValue);
     }
     if (isScreen(context, mobileLarge: true)) {
-      return Field.getDouble(_dimension.textMobileLarge[text], 0);
+      return Field.getDouble(_dimension!.textMobileLarge[text], defaulValue);
     }
     if (isScreen(context, tablet: true)) {
-      return Field.getDouble(_dimension.textTablet[text], 0);
+      return Field.getDouble(_dimension!.textTablet[text], defaulValue);
     }
     if (isScreen(context, laptop: true)) {
-      return Field.getDouble(_dimension.textLaptop[text], 0);
+      return Field.getDouble(_dimension!.textLaptop[text], defaulValue);
     }
     if (isScreen(context, laptopLarge: true)) {
-      return Field.getDouble(_dimension.textLaptopLarge[text], 0);
+      return Field.getDouble(_dimension!.textLaptopLarge[text], defaulValue);
     }
 
-    return Field.getDouble(_dimension.textFourK[text], 0);
+    return Field.getDouble(_dimension!.textFourK[text], defaulValue);
   }
 
   /// Screen `equals` or is `greater` than.
@@ -45,25 +49,25 @@ class Configuration {
       bool laptopLarge = false,
       bool fourK = false}) {
     double width = MediaQuery.of(context).size.width;
-    if (mobileSmall && width >= _dimension.mobileSmall) {
+    if (mobileSmall && width >= _dimension!.mobileSmall) {
       return true;
     }
-    if (mobileMedium && width >= _dimension.mobileMedium) {
+    if (mobileMedium && width >= _dimension!.mobileMedium) {
       return true;
     }
-    if (mobileLarge && width >= _dimension.mobileLarge) {
+    if (mobileLarge && width >= _dimension!.mobileLarge) {
       return true;
     }
-    if (tablet && width >= _dimension.tablet) {
+    if (tablet && width >= _dimension!.tablet) {
       return true;
     }
-    if (laptop && width >= _dimension.laptop) {
+    if (laptop && width >= _dimension!.laptop) {
       return true;
     }
-    if (laptopLarge && width >= _dimension.laptopLarge) {
+    if (laptopLarge && width >= _dimension!.laptopLarge) {
       return true;
     }
-    if (fourK && width >= _dimension.fourK) {
+    if (fourK && width >= _dimension!.fourK) {
       return true;
     }
 

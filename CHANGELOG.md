@@ -1,3 +1,8 @@
+## [0.12.7].
+
+* JSONObject added
+* Model extends JSONObject now
+
 ## [0.12.6].
 
 * Responsive Font Size Added

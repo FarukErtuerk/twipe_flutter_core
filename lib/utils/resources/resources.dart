@@ -1,13 +1,16 @@
 class Resources {
-  static String getStylePath(String filePath) {
-    return 'resources/style/' + filePath + ".json";
+  /// Returns resources/style/`path`.json
+  static String getStylePath(String path) {
+    return 'resources/style/' + path + ".json";
   }
 
-  static String getJSONPath(String filePath) {
-    return 'resources/json/' + filePath + ".json";
+  /// Returns resources/json/`path`/.json
+  static String getJSONPath(String path) {
+    return 'resources/json/' + path + ".json";
   }
 
-  static String getResource(String filePath) {
-    return 'resources/' + filePath;
+  /// Returns resources/`path`
+  static String getResourcePath(String path) {
+    return 'resources/' + path;
   }
 }
