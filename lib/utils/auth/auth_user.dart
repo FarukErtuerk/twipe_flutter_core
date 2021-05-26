@@ -9,8 +9,12 @@ class AuthUser extends Model {
       ["email", "password", "phone_number", "token"];
 
   @override
-  List<String> get requiredFields =>
-      ["email|phone_number", "password", "token"];
+  List<String> get validator => [
+        "email=required&&max:255",
+        "password=required&&min:8&&max255",
+        "phone_number=required&&max:15",
+        "token=required"
+      ];
 
   /// Returns Auth Password
   String getPassword() {

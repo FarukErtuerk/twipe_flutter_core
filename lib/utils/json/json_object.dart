@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:twipe_flutter_core/utils/field/field.dart';
+import 'package:twipe_flutter_core/utils/field/field_validator.dart';
 
 abstract class JSONObject {
   @protected
@@ -7,7 +8,7 @@ abstract class JSONObject {
 
   /// Required Fields will be checked in validation
   @protected
-  List<String> get requiredFields;
+  List<String> get validator;
 
   JSONObject(this._data);
 
@@ -15,13 +16,26 @@ abstract class JSONObject {
     return _data;
   }
 
+  /// Returns Map with specified Keys in `List<String> keys`
+  Map<String, dynamic> getOnly(List<String> keys) {
+    Map<String, dynamic> result = {};
+    for (String key in keys) {
+      result[key] = _data[key];
+    }
+    return result;
+  }
+
+  setValue(String key, dynamic value) {
+    _data[key] = value;
+  }
+
   setData(Map<String, dynamic> data) {
     _data = data;
   }
 
   /// Validates Data
-  bool validateJSON() {
-    return Field.validateFields(requiredFields, getData());
+  bool validate() {
+    return FieldValidator.validate(validator, getData());
   }
 
   String getStringValue(String key, {String defaultValue = ""}) {

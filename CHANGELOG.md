@@ -1,3 +1,10 @@
+## [0.12.8].
+
+* JSONObject
+- supports getOnly()
+- requiredFields removed
+- validator added
+
 ## [0.12.7].
 
 * JSONObject added

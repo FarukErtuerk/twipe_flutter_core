@@ -69,20 +69,4 @@ class Field {
   }
 
   /// Validate Specific Field Array
-
-  static bool validateFields(List<String> field, Map<String, dynamic> data) {
-    for (String key in field) {
-      if (key.contains("|")) {
-        List<String> keys = key.split("|");
-        if (!data.containsKey(keys[0]) && !data.containsKey(keys[1])) {
-          return false;
-        }
-      } else {
-        if (!data.containsKey(key)) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
 }

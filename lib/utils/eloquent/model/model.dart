@@ -12,7 +12,11 @@ abstract class Model extends JSONObject with Cacheable {
 
   /// Do Not Edit this, except you know what you are doing
   @protected
-  final List<String> baseFields = ["id", "created_at", "updated_at"];
+  final List<String> baseFields = [
+    "id=required",
+    "created_at=required",
+    "updated_at=required"
+  ];
 
   /// Model Id
   @protected
@@ -28,17 +32,6 @@ abstract class Model extends JSONObject with Cacheable {
     if (this._id!.isEmpty) {
       throw UnsupportedError("Model Requires Field :id");
     }
-  }
-
-  /// Validates Model Data
-  bool validate() {
-    if (!validateJSON()) {
-      return false;
-    }
-    if (!Field.validateFields(baseFields, getData())) {
-      return false;
-    }
-    return true;
   }
 
   /// Returns Model Data With Options
