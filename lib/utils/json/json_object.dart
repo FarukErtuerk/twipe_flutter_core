@@ -34,6 +34,7 @@ abstract class JSONObject {
   }
 
   /// Validates Data
+  @mustCallSuper
   bool validate() {
     return FieldValidator.validate(validator, getData());
   }

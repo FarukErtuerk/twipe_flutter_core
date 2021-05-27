@@ -1,3 +1,9 @@
+## [0.12.9].
+
+* Collection
+- removeModelById
+- clear
+
 ## [0.12.8].
 
 * JSONObject

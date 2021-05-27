@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:twipe_flutter_core/utils/field/field.dart';
+import 'package:twipe_flutter_core/utils/field/field_validator.dart';
 import 'package:twipe_flutter_core/utils/json/json_object.dart';
 import '../../cache/cache_object.dart';
 import '../../cache/cacheable.dart';
@@ -49,6 +50,11 @@ abstract class Model extends JSONObject with Cacheable {
   /// Return Model id
   String getId() {
     return _id!;
+  }
+
+  @override
+  bool validate() {
+    return super.validate() && FieldValidator.validate(baseFields, getData());
   }
 
   /// Returns Creation Date

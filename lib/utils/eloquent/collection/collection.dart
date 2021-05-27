@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../cache/cache_handler.dart';
 import '../../cache/cache_object.dart';
 import '../model/model.dart';
@@ -29,6 +30,23 @@ abstract class Collection<T> {
       return false;
     }
     _models[model.getId()] = model;
+    return true;
+  }
+
+  Future<bool> removeModelById(String id) async {
+    if (!await CacheHandler.removeCacheObjectFromList(
+        "collection_" + _id, id, "id")) {
+      return false;
+    }
+    _models.remove(id);
+    return true;
+  }
+
+  Future<bool> clear() async {
+    if (!await CacheHandler.removeCacheObject("collection_" + _id)) {
+      return false;
+    }
+    _models.clear();
     return true;
   }
 
