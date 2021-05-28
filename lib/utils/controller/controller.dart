@@ -2,9 +2,9 @@ import 'package:twipe_flutter_core/utils/controller/watch/watchable_change_resul
 import 'package:twipe_flutter_core/utils/controller/watch/watchable_change_action.dart';
 import 'package:twipe_flutter_core/utils/controller/watch_controller.dart';
 import 'package:twipe_flutter_core/utils/eloquent/collection/collection.dart';
-
 import 'watch/watch_handler.dart';
 
+/* Controller<T> with Collection<T> and WatchController */
 abstract class Controller<T> extends Collection<T> implements WatchController {
   Controller(String id) : super(id) {
     WatchHandler.registerWatcher(this);

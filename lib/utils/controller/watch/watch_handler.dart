@@ -16,7 +16,7 @@ class WatchHandler {
   static Future<WatchableChangeResult> trigger(String watcherId,
       WatchableChangeAction watchableChangeAction, dynamic data) async {
     if (!watcher.containsKey(watcherId)) {
-      return WatchableChangeResult(null);
+      return WatchableChangeResult.error();
     }
     return await watcher[watcherId].trigger(watchableChangeAction, data);
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:twipe_flutter_core/widgets/pages/watched_page.dart';
-import 'package:twipe_flutter_core/widgets/pages/watched_page_state.dart';
+import 'package:twipe_flutter_core/widgets/page/watched/watched_page.dart';
+import 'package:twipe_flutter_core/widgets/page/watched/watched_page_state.dart';
 
 class MainPage extends WatchedPage {
   @override
@@ -18,5 +18,5 @@ class _MainPageState extends WatchedPageState<MainPage> {
   String get watchableId => "main_page";
 
   @override
-  String get watcherId => "main_watcher";
+  String get watcherId => "main_page_watcher";
 }
