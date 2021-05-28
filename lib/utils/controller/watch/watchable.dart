@@ -1,15 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:twipe_flutter_core/utils/controller/watch/watch_handler.dart';
 import 'package:twipe_flutter_core/utils/controller/watch/watchable_change_action.dart';
 
+import 'watchable_change_result.dart';
+
 mixin Watchable {
-  String get watcherId => throw UnimplementedError();
-  String get watchableId => throw UnimplementedError();
-  change({dynamic eventData}) {
-    dynamic data = onChange();
+  @protected
+  String get watcherId;
+  @protected
+  String get watchableId;
+
+  Future<WatchableChangeResult> change({dynamic eventData}) async {
+    dynamic data = await onChange();
     WatchableChangeAction action =
         WatchableChangeAction(watchableId, eventData);
-    WatchHandler.trigger(watcherId, action, data);
+    return WatchHandler.trigger(watcherId, action, data);
   }
 
-  dynamic onChange() => throw UnimplementedError();
+  Future<dynamic> onChange() => throw UnimplementedError();
 }
