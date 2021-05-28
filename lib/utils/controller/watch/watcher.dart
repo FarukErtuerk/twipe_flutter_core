@@ -10,11 +10,13 @@ abstract class Watcher {
     WatchHandler.registerWatcher(this);
   }
 
+  /// Trigger Watcher
   Future<WatchableChangeResult> trigger(
       WatchableChangeAction watchableChangeAction, dynamic data) async {
     return await onTrigger(watchableChangeAction, data);
   }
 
+  /// On Watcher was triggered
   Future<WatchableChangeResult> onTrigger(
           WatchableChangeAction watchableChangeAction, dynamic data) =>
       throw UnimplementedError();

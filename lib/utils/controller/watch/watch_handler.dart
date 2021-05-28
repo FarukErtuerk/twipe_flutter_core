@@ -7,10 +7,12 @@ import 'watchable_change_result.dart';
 class WatchHandler {
   static Map<String, dynamic> watcher = {};
 
+  /// Register new Watcher
   static registerWatcher(dynamic watcher) {
     watcher[watcher.getId()] = watcher;
   }
 
+  /// Trigger Watcher with `watcherId`
   static Future<WatchableChangeResult> trigger(String watcherId,
       WatchableChangeAction watchableChangeAction, dynamic data) async {
     if (!watcher.containsKey(watcherId)) {

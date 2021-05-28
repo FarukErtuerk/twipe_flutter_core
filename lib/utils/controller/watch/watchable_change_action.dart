@@ -1,9 +1,13 @@
 class WatchableChangeAction {
   final String watchableId;
-  final dynamic eventData;
-  WatchableChangeAction(this.watchableId, this.eventData);
+  final dynamic _data;
+  WatchableChangeAction(this.watchableId, this._data);
 
-  bool hasEventData() {
-    return eventData != null;
+  bool hasData() {
+    return _data != null;
+  }
+
+  dynamic getData() {
+    return _data;
   }
 }

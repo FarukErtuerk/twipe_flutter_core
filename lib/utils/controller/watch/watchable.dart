@@ -10,12 +10,13 @@ mixin Watchable {
   @protected
   String get watchableId;
 
-  Future<WatchableChangeResult> change({dynamic eventData}) async {
-    dynamic data = await onChange();
-    WatchableChangeAction action =
-        WatchableChangeAction(watchableId, eventData);
-    return WatchHandler.trigger(watcherId, action, data);
+  /// Trigger Watcher
+  Future<WatchableChangeResult> change({dynamic data}) async {
+    dynamic _onChangeData = await onChange();
+    WatchableChangeAction action = WatchableChangeAction(watchableId, data);
+    return WatchHandler.trigger(watcherId, action, _onChangeData);
   }
 
+  /// On Watchable change
   Future<dynamic> onChange() => throw UnimplementedError();
 }
