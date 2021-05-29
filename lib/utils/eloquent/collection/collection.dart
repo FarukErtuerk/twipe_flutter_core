@@ -4,7 +4,7 @@ import '../../cache/cache_object.dart';
 import '../model/model.dart';
 
 /// Collection class contains Models and handles them
-abstract class Collection<T> {
+abstract class Collection<T extends Model> {
   @protected
   final String _id;
 
