@@ -9,7 +9,7 @@ class WatchHandler {
 
   /// Register new Watcher
   static registerWatcher(dynamic watcher) {
-    watcher[watcher.getId()] = watcher;
+    watcher[watcher.watcherId] = watcher;
   }
 
   /// Trigger Watcher with `watcherId`
