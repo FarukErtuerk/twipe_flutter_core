@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:twipe_flutter_core/utils/test/test.dart';
 import 'helper/helper.dart';
 import 'tester/app/app_tester.dart';
-import 'tester/networking/network_tester.dart';
 import 'tester/utils/configuration_test.dart';
 import 'tester/utils/enryption_tester.dart';
 import 'tester/utils/environment_test.dart';
@@ -22,7 +21,6 @@ Future<void> main() async {
       .add(EnvironmentTest())
       .add(EncryptionTester())
       .add(FieldTester())
-      .add(NetworkTester())
       .add(ThemeTester())
       .add(AppTester())
       .doTest();
