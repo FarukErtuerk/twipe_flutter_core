@@ -1,3 +1,9 @@
+## [0.13.8].
+
+* Collection
+- setup() will now load Cache
+- getCacheId() returns Collections Cache Id
+
 ## [0.13.1].
 
 * Watcher Added

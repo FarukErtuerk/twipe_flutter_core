@@ -13,10 +13,8 @@ abstract class Collection<T extends Model> {
 
   Collection(this._id);
 
-  /// Load Model Data From Cache From Cache
-  @protected
-  Future<List<CacheObject>> loadModelDataFromCache() async {
-    return await CacheHandler.getCacheList("collection_" + _id);
+  String getCacheId() {
+    return "collection_" + _id;
   }
 
   /// Save Model to Cache and add to Map
@@ -25,7 +23,7 @@ abstract class Collection<T extends Model> {
       return false;
     }
     if (!await CacheHandler.saveCacheObjectToList(
-        "collection_" + _id, model.toCacheObject(), "id")) {
+        getCacheId(), model.toCacheObject(), "id")) {
       return false;
     }
     _models[model.getId()] = model;
@@ -33,16 +31,17 @@ abstract class Collection<T extends Model> {
   }
 
   Future<bool> removeModelById(String id) async {
-    if (!await CacheHandler.removeCacheObjectFromList(
-        "collection_" + _id, id, "id")) {
+    if (!await CacheHandler.removeCacheObjectFromList(getCacheId(), id, "id")) {
       return false;
     }
-    _models.remove(id);
+    if (_models.containsKey(id)) {
+      _models.remove(id);
+    }
     return true;
   }
 
   Future<bool> clear() async {
-    if (!await CacheHandler.removeCacheObject("collection_" + _id)) {
+    if (!await CacheHandler.removeCacheObject(getCacheId())) {
       return false;
     }
     _models.clear();
@@ -50,7 +49,17 @@ abstract class Collection<T extends Model> {
   }
 
   /// Initialize your Model Data Here
-  Future<void> setup();
+  Future<void> setup() async {
+    Map<String, T> result = {};
+    List<CacheObject> cache = await CacheHandler.getCacheList(getCacheId());
+    for (CacheObject cacheObject in cache) {
+      T? tmp = createModel(cacheObject.getData());
+      if (tmp != null) {
+        result[tmp.getId()] = tmp;
+      }
+    }
+    setModels(result);
+  }
 
   /// Returns Collection Id
   String getId() {
