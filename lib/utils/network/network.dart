@@ -47,19 +47,26 @@ abstract class Network {
   Future<NetworkResult> call(String serverId, String routeId,
       {int requestType = NetworkRequestType.POST,
       Map<String, dynamic>? data,
-      Map<String, String>? replacements}) async {
+      Map<String, String>? replacements,
+      Map<String, dynamic>? headers}) async {
     Server server = getServer(serverId);
     Uri uri = server.getUri(routeId: routeId, replacements: replacements);
     ServerRoute serverRoute = server.getRoute(routeId);
-    return await _callServer(server, serverRoute, uri, requestType, data);
+    return await _callServer(
+        server, serverRoute, uri, requestType, data, headers);
   }
 
   /// This Is The Actual Network Request
   /// It transforms your response into readable String element
   /// Server Cookies will be saved into your Cache and can be accessed later
   @protected
-  Future<NetworkResult> _callServer(Server server, ServerRoute serverRoute,
-      Uri uri, int requestType, Map<String, dynamic>? data) async {
+  Future<NetworkResult> _callServer(
+      Server server,
+      ServerRoute serverRoute,
+      Uri uri,
+      int requestType,
+      Map<String, dynamic>? data,
+      Map<String, dynamic>? headers) async {
     /// Check if NetworkFaker contains Route.
     if (NetworkFaker.hasRoute(serverRoute.getId())) {
       return await NetworkFaker.getRoute(serverRoute.getId()).callback(
@@ -98,6 +105,12 @@ abstract class Network {
     if (serverRoute.getDefaultHeader().isNotEmpty) {
       for (String key in serverRoute.getDefaultHeader().keys) {
         request.headers.add(key, serverRoute.getDefaultHeader()[key]);
+      }
+    }
+
+    if (headers != null) {
+      for (String headerKey in headers.keys) {
+        request.headers.add(headerKey, headers[headerKey]);
       }
     }
 
