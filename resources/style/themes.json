@@ -12,7 +12,8 @@
         "neutral": {
             "text": "#FFFFFF",
             "border": "#FFFFFF",
-            "icon": "#FFFFFF"
+            "icon": "#FFFFFF",
+            "background": "#000000"
         },
         "colors": {
             "darkest": "#090C02"

@@ -17,6 +17,7 @@ class TwipeTheme {
   final Color text;
   final Color border;
   final Color icon;
+  final Color background;
   final Map<String, Color> colors;
   TwipeTheme(
       this.primary,
@@ -29,6 +30,7 @@ class TwipeTheme {
       this.text,
       this.border,
       this.icon,
+      this.background,
       this.colors);
 
   /// Get Color from `colors`
@@ -68,6 +70,8 @@ class TwipeTheme {
               HexColor.fromHex(Field.getString(neutral["text"], "#FFFFFF")),
               HexColor.fromHex(Field.getString(neutral["border"], "#FFFFFF")),
               HexColor.fromHex(Field.getString(neutral["icon"], "#FFFFFF")),
+              HexColor.fromHex(
+                  Field.getString(neutral["background"], "#FFFFFF")),
               resultColors);
         }
       }
