@@ -14,6 +14,14 @@ class CustomData {
     "Angelina"
   ];
 
+  static final List<String> titles = ['Dr.', 'Mr.', 'Ms.', 'Mrs.', 'Sir.'];
+
+  /// Returns random Title from `titles`
+  static String getTile() {
+    return getRandomFromList(titles);
+  }
+
+  /// Returns random Name from `names`
   static String getName() {
     return getRandomFromList(names);
   }
@@ -22,8 +30,8 @@ class CustomData {
     return list[Random().nextInt(list.length)];
   }
 
-  static int getInt() {
-    return Random().nextDouble().toInt();
+  static int getInt(int max) {
+    return Random().nextInt(max);
   }
 
   static double getDouble() {
@@ -32,6 +40,10 @@ class CustomData {
 
   static bool getBool() {
     return Random().nextBool();
+  }
+
+  static DateTime getDateTime() {
+    return getBool() ? getDateTimePast() : getDateTimeFuture();
   }
 
   static DateTime getDateTimePast() {

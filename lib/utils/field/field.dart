@@ -56,7 +56,7 @@ class Field {
   }
 
 // Parse Map
-  static Map<K, T> parseMapCustom<K, T>(dynamic data, Map<K, T> defaultValue) {
+  static Map<K, T> parseMap<K, T>(dynamic data, Map<K, T> defaultValue) {
     if (data == null) {
       return defaultValue;
     }

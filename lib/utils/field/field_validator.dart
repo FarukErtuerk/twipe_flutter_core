@@ -40,7 +40,7 @@ class _FieldValidatorHelper {
         max: max, min: min, isRequired: isRequired);
   }
   bool validate(Map<String, dynamic> data) {
-    if (!data.containsKey(name)) {
+    if (!data.containsKey(name) || data[name] == null) {
       return !isRequired;
     }
     dynamic tmp = data[name];

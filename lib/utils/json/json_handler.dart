@@ -6,6 +6,9 @@ import 'package:twipe_flutter_core/utils/resources/resources.dart';
 
 class JSONHandler {
   static Map<String, Map<String, dynamic>> _json = {};
+
+  /// Setup JSONHandler
+  /// - Load all Files defined in .env file `JSON_FILES`
   static Future<void> setup() async {
     try {
       for (String file in Environment.getList("JSON_FILES")) {

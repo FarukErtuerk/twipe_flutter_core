@@ -20,7 +20,7 @@ class TestFakeAuthRoute extends NetworkFakerRoute {
         "id": 0,
         "email": "test.dev@test.com",
         "phone_number": "12345678900",
-        "token": "token_" + CustomData.getInt().toString(),
+        "token": "token_" + CustomData.getInt(10000).toString(),
         "password": "nasfna9rjfas"
       }
     }));

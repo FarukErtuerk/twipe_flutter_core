@@ -13,4 +13,9 @@ class Resources {
   static String getResourcePath(String path) {
     return 'resources/' + path;
   }
+
+  /// Returns Image Path: resources/images/`path`
+  static String getImagePath(String path) {
+    return 'resources/images/' + path;
+  }
 }

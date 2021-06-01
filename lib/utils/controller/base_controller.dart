@@ -5,10 +5,10 @@ import 'package:twipe_flutter_core/utils/eloquent/collection/collection.dart';
 import 'package:twipe_flutter_core/utils/eloquent/model/model.dart';
 import 'watch/watch_handler.dart';
 
-/* Controller<T> with Collection<T> and WatchController */
-abstract class Controller<T extends Model> extends Collection<T>
+/* BaseController<T> with Collection<T> and WatchController */
+abstract class BaseController<T extends Model> extends Collection<T>
     implements WatchController {
-  Controller(String id) : super(id) {
+  BaseController(String id) : super(id) {
     WatchHandler.registerWatcher(this);
   }
 
