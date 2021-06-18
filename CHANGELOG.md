@@ -1,3 +1,12 @@
+## [0.14.8].
+
+* LoadableWidget
+- PulsingLine
+- PulsinCircle
+
+* WatchedPage
+- Supports LoadableWidget
+
 ## [0.13.8].
 
 * Collection
