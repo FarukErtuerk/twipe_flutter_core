@@ -20,8 +20,9 @@ class CookieHandler {
     return _cookies;
   }
 
-  /// Clear Cookie Cache
+  /// Clear Cookies
   Future<bool> clear() async {
+    _cookies = {};
     return await CacheHandler.removeCacheObject("server_" + _id + "_cookies");
   }
 

@@ -5,22 +5,22 @@ import 'package:twipe_flutter_core/utils/test/tester.dart';
 class ConfigurationTest extends Tester {
   @override
   Future<void> doTest() async {
-    testDimension(320, Configuration.getDimension().mobileSmall);
-    testDimension(375, Configuration.getDimension().mobileMedium);
-    testDimension(425, Configuration.getDimension().mobileLarge);
-    testDimension(768, Configuration.getDimension().tablet);
-    testDimension(1024, Configuration.getDimension().laptop);
-    testDimension(1440, Configuration.getDimension().laptopLarge);
-    testDimension(2560, Configuration.getDimension().fourK);
-  }
-
-  void testDimension(double expected, double actual) {
-    test(
-        'Testing Dimensions Expected:' +
-            expected.toString() +
-            " Actual:" +
-            actual.toString(), () {
-      expect(actual, expected);
-    });
+    testValues([
+      Configuration.getDimension().mobileSmall,
+      Configuration.getDimension().mobileMedium,
+      Configuration.getDimension().mobileLarge,
+      Configuration.getDimension().tablet,
+      Configuration.getDimension().laptop,
+      Configuration.getDimension().laptopLarge,
+      Configuration.getDimension().fourK,
+    ], [
+      320,
+      375,
+      425,
+      768,
+      1024,
+      1440,
+      2560,
+    ], info: 'Testing Dimensions');
   }
 }

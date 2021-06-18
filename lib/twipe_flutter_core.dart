@@ -1,6 +1,7 @@
 library twipe_flutter_core;
 
 import 'package:flutter/material.dart';
+import 'package:twipe_flutter_core/utils/cache/cache_handler.dart';
 import 'package:twipe_flutter_core/utils/config/configuration.dart';
 import 'package:twipe_flutter_core/utils/config/environment.dart';
 import 'package:twipe_flutter_core/utils/json/json_handler.dart';
@@ -12,6 +13,7 @@ class TwipeFlutterCore {
   static Future<void> initialize({String? environmentFilePath}) async {
     WidgetsFlutterBinding.ensureInitialized();
     await Environment.setup(configFilePath: environmentFilePath);
+    await CacheHandler.setup();
     await JSONHandler.setup();
     Configuration.setup();
     await TwipeTheme.setup();

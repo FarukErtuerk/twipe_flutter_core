@@ -14,9 +14,18 @@ mixin Watchable {
   Future<WatchableChangeResult> change({dynamic data}) async {
     dynamic _onChangeData = await onChange();
     WatchableChangeAction action = WatchableChangeAction(watchableId, data);
-    return WatchHandler.trigger(watcherId, action, _onChangeData);
+    WatchableChangeResult result =
+        await WatchHandler.trigger(watcherId, action, _onChangeData);
+    await onChanged(result);
+    return result;
   }
 
   /// On Watchable change
-  Future<dynamic> onChange() => throw UnimplementedError();
+  Future<dynamic> onChange() async {
+    return null;
+  }
+
+  Future<dynamic> onChanged(WatchableChangeResult watchableChangeResult) async {
+    return null;
+  }
 }

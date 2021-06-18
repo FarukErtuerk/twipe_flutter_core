@@ -5,10 +5,22 @@ import '../../utils/encryption/crypt.dart';
 import 'cache_object.dart';
 
 class CacheHandler {
+  static SharedPreferences? sharedPreferences;
+  static Future<void> setup() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  static SharedPreferences getSharedPreferences() {
+    return sharedPreferences!;
+  }
+
+  static bool isSetup() {
+    return sharedPreferences != null;
+  }
+
   /// Clear current Cache
   static Future<bool> clear() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return await sharedPreferences.clear();
+    return await getSharedPreferences().clear();
   }
 
   /// Get `CacheObject` from List<CacheObject> with value
@@ -29,10 +41,8 @@ class CacheHandler {
   static Future<List<CacheObject>> getCacheList(String key,
       {bool deleteOnError = true}) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      if (sharedPreferences.containsKey(key)) {
-        List<String> values = sharedPreferences.getStringList(key)!;
+      if (getSharedPreferences().containsKey(key)) {
+        List<String> values = getSharedPreferences().getStringList(key)!;
         List<CacheObject> result = [];
         values.forEach((element) {
           Map<dynamic, dynamic> data = jsonDecode(_reApplyCacheKey(element));
@@ -42,12 +52,8 @@ class CacheHandler {
       }
     } catch (e) {
       if (deleteOnError) {
-        print("CacheHandler: Cannot Delete Key: " + key);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        if (sharedPreferences.containsKey(key)) {
-          await sharedPreferences.remove(key);
-        }
+        print("CacheHandler: Delete Key " + key);
+        await removeCacheObject(key);
       }
       print(e);
     }
@@ -58,21 +64,15 @@ class CacheHandler {
   static Future<CacheObject?> getCacheObject(String key,
       {bool deleteOnError = true}) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      if (sharedPreferences.containsKey(key)) {
-        String value = sharedPreferences.getString(key)!;
+      if (getSharedPreferences().containsKey(key)) {
+        String value = getSharedPreferences().getString(key)!;
         Map<dynamic, dynamic> data = jsonDecode(_reApplyCacheKey(value));
         return CacheObject(data.cast());
       }
     } catch (e) {
       if (deleteOnError) {
-        print("CacheHandler: Cannot Delete Key: " + key);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        if (sharedPreferences.containsKey(key)) {
-          await sharedPreferences.remove(key);
-        }
+        print("CacheHandler: Delete Key: " + key);
+        await removeCacheObject(key);
       }
       print(e);
     }
@@ -83,22 +83,16 @@ class CacheHandler {
   static Future<bool> saveCacheObject(String key, CacheObject cacheObject,
       {bool overwrite = true, bool deleteOnError = true}) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      if (!sharedPreferences.containsKey(key) || overwrite) {
-        if (await sharedPreferences.setString(
+      if (!getSharedPreferences().containsKey(key) || overwrite) {
+        if (await getSharedPreferences().setString(
             key, _applyCacheKey(jsonEncode(cacheObject.getData())))) {
           return true;
         }
       }
     } catch (e) {
       if (deleteOnError) {
-        print("CacheHandler: Cannot Delete Key: " + key);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        if (sharedPreferences.containsKey(key)) {
-          await sharedPreferences.remove(key);
-        }
+        print("CacheHandler: Delete Key: " + key);
+        await removeCacheObject(key);
       }
       print(e);
     }
@@ -109,9 +103,7 @@ class CacheHandler {
   /// Remove Cache Object From Cache
   static Future<bool> removeCacheObject(String key) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      return await sharedPreferences.remove(key);
+      return await getSharedPreferences().remove(key);
     } catch (e) {}
     return false;
   }
@@ -120,10 +112,8 @@ class CacheHandler {
       String key, CacheObject cacheObject, String keyField,
       {bool overwrite = true, bool deleteOnError = true, int? limit}) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      if (sharedPreferences.containsKey(key)) {
-        List<String> values = sharedPreferences.getStringList(key)!;
+      if (getSharedPreferences().containsKey(key)) {
+        List<String> values = getSharedPreferences().getStringList(key)!;
         List<String> newValues = [];
         bool foundInOld = false;
         values.forEach((element) {
@@ -147,22 +137,18 @@ class CacheHandler {
             newValues.removeAt(0);
           }
         }
-        await sharedPreferences.setStringList(key, newValues);
+        await getSharedPreferences().setStringList(key, newValues);
         return true;
       } else {
-        if (await sharedPreferences.setStringList(
+        if (await getSharedPreferences().setStringList(
             key, [_applyCacheKey(jsonEncode(cacheObject.getData()))])) {
           return true;
         }
       }
     } catch (e) {
       if (deleteOnError) {
-        print("CacheHandler: Cannot Delete Key: " + key);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        if (sharedPreferences.containsKey(key)) {
-          await sharedPreferences.remove(key);
-        }
+        print("CacheHandler: Delete Key: " + key);
+        await removeCacheObject(key);
       }
       print(e);
     }
@@ -174,27 +160,21 @@ class CacheHandler {
       String key, String objectId, String keyField,
       {bool deleteOnError = true}) async {
     try {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      if (sharedPreferences.containsKey(key)) {
-        List<String> values = sharedPreferences.getStringList(key)!;
+      if (getSharedPreferences().containsKey(key)) {
+        List<String> values = getSharedPreferences().getStringList(key)!;
         List<String> newValues = [];
         values.forEach((element) {
           if (jsonDecode(_reApplyCacheKey(element))[keyField] != objectId) {
             newValues.add(element);
           }
         });
-        await sharedPreferences.setStringList(key, newValues);
+        await getSharedPreferences().setStringList(key, newValues);
         return true;
       }
     } catch (e) {
       if (deleteOnError) {
-        print("CacheHandler: Cannot Delete Key: " + key);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        if (sharedPreferences.containsKey(key)) {
-          await sharedPreferences.remove(key);
-        }
+        print("CacheHandler: Delete Key: " + key);
+        await removeCacheObject(key);
       }
       print(e);
     }

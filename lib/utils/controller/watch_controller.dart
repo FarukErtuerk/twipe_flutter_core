@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:twipe_flutter_core/utils/controller/watch/watchable_change_result.dart';
 import 'package:twipe_flutter_core/utils/controller/watch/watchable_change_action.dart';
 import 'package:twipe_flutter_core/utils/controller/watch/watcher.dart';

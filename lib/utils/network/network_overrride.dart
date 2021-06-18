@@ -10,7 +10,7 @@ class NetworkOverride extends HttpOverrides with SkipBadCerticifate {
   HttpClient createHttpClient(SecurityContext? context) {
     final HttpClient client = super.createHttpClient(context);
     if (skipBadCertificate) {
-      client.badCertificateCallback = skip;
+      client.badCertificateCallback = applySkipBadCerticifate;
     }
     return client;
   }
