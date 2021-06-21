@@ -1,3 +1,7 @@
+## [0.15.0].
+
+* ResponsiveWidget -> ResponsiveBuilder
+
 ## [0.14.9].
 
 * ResponsiveWidget
