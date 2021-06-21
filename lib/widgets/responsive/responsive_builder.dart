@@ -10,8 +10,14 @@ class ResponsiveBuilder extends StatelessWidget with ResponsiveBuilderMixin {
   final WidgetBuilder? laptop;
   final WidgetBuilder? laptopLarge;
   final WidgetBuilder? fourK;
-  ResponsiveBuilder(this.mobileSmall, this.mobileMedium, this.mobileLarge,
-      this.tablet, this.laptop, this.laptopLarge, this.fourK);
+  ResponsiveBuilder(
+      {this.mobileSmall,
+      this.mobileMedium,
+      this.mobileLarge,
+      this.tablet,
+      this.laptop,
+      this.laptopLarge,
+      this.fourK});
   @override
   Widget build(BuildContext context) {
     if (fourK != null && Configuration.isScreen(context, fourK: true)) {
