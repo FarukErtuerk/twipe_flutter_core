@@ -1,3 +1,7 @@
+## [0.14.9].
+
+* ResponsiveWidget
+
 ## [0.14.8].
 
 * LoadableWidget
