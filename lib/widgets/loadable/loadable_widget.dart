@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:twipe_flutter_core/widgets/page/watched/watched_page_state.dart';
+import 'package:twipe_flutter_core/widgets/page/watched/watched_loadable_page_state.dart';
 
 abstract class LoadableWidget extends StatelessWidget {
-  final WatchedPageState _watchedPageState;
+  final WatchedLoadablePageState _watchedLoadablePageState;
   final dynamic value;
-  LoadableWidget(this._watchedPageState, this.value);
+  LoadableWidget(this._watchedLoadablePageState, this.value);
+
+  ///LoadableWidget has Value
   bool hasValue() {
     return value != null;
   }
 
+  /// Get Animation Controller
   AnimationController getAnimationController() {
-    return _watchedPageState.getLoadingAnimationController();
+    return _watchedLoadablePageState.getLoadingAnimationController();
   }
 
+  /// Get Animation
   Animation getAnimation() {
-    return _watchedPageState.getLoadingAnimation();
+    return _watchedLoadablePageState.getLoadingAnimation();
   }
 
   @override

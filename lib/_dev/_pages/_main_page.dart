@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:twipe_flutter_core/_dev/_components/loading_widget_dev.dart';
 import 'package:twipe_flutter_core/widgets/page/watched/watched_page.dart';
 import 'package:twipe_flutter_core/widgets/page/watched/watched_page_state.dart';
 
@@ -16,15 +15,7 @@ class _MainPageState extends WatchedPageState<MainPage> {
       body: SafeArea(
           child: Container(
         child: Column(
-          children: [
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-            LoadingWidgetDev(this, null),
-          ],
+          children: [],
         ),
         padding: EdgeInsets.all(32),
       )),

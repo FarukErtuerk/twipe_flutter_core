@@ -10,6 +10,7 @@ class ResponsiveBuilder extends StatelessWidget with ResponsiveBuilderMixin {
   final WidgetBuilder? laptop;
   final WidgetBuilder? laptopLarge;
   final WidgetBuilder? fourK;
+  final WidgetBuilder? defaultBuilder;
   ResponsiveBuilder(
       {this.mobileSmall,
       this.mobileMedium,
@@ -17,7 +18,8 @@ class ResponsiveBuilder extends StatelessWidget with ResponsiveBuilderMixin {
       this.tablet,
       this.laptop,
       this.laptopLarge,
-      this.fourK});
+      this.fourK,
+      this.defaultBuilder});
   @override
   Widget build(BuildContext context) {
     if (fourK != null && Configuration.isScreen(context, fourK: true)) {
@@ -38,7 +40,10 @@ class ResponsiveBuilder extends StatelessWidget with ResponsiveBuilderMixin {
         Configuration.isScreen(context, mobileMedium: true)) {
       return buildMobileMedium(context);
     }
-    return buildMobileSmall(context);
+    if (mobileSmall != null) {
+      return buildMobileSmall(context);
+    }
+    return buildDefault(context);
   }
 
   @override
@@ -74,5 +79,10 @@ class ResponsiveBuilder extends StatelessWidget with ResponsiveBuilderMixin {
   @override
   Widget buildTablet(BuildContext context) {
     return tablet!(context);
+  }
+
+  @override
+  Widget buildDefault(BuildContext context) {
+    return defaultBuilder!(context);
   }
 }

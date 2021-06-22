@@ -11,7 +11,7 @@ abstract class Model extends JSONObject with Cacheable {
   @protected
   List<String> get hiddenFields;
 
-  /// Do Not Edit this, except you know what you are doing
+  /// Not remove `id` ad least.
   @protected
   final List<String> baseFields = [
     "id=required",
@@ -53,8 +53,9 @@ abstract class Model extends JSONObject with Cacheable {
   }
 
   @override
-  bool validate() {
-    return super.validate() && FieldValidator.validate(baseFields, getData());
+  bool validate({List<String>? optionalValidator}) {
+    return super.validate(optionalValidator: optionalValidator) &&
+        FieldValidator.validate(baseFields, getData());
   }
 
   /// Returns Creation Date

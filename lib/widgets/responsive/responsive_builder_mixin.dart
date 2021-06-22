@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:twipe_flutter_core/utils/config/configuration.dart';
 
 /// Responsive Widget applies build Method to given Screen Size
 mixin ResponsiveBuilderMixin {
@@ -16,4 +15,6 @@ mixin ResponsiveBuilderMixin {
   Widget buildMobileMedium(BuildContext context);
 
   Widget buildMobileSmall(BuildContext context);
+
+  Widget buildDefault(BuildContext context);
 }

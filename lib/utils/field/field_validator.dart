@@ -5,6 +5,10 @@ class FieldValidator {
   static bool validate(List<String> fields, Map<String, dynamic> data) {
     for (String field in fields) {
       if (!_FieldValidatorHelper.parse(field).validate(data)) {
+        print('FieldValiator Error at: ' +
+            field +
+            ' with data: ' +
+            data.toString());
         return false;
       }
     }

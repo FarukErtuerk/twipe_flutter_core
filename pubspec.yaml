@@ -1,6 +1,6 @@
 name: twipe_flutter_core
 description: Twipe Flutter Core
-version: 0.15.2
+version: 0.15.3
 homepage: https://github.com/FarukErtuerk
 repository: https://github.com/FarukErtuerk/twipe_flutter_core
 
@@ -15,7 +15,6 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.6
-  cupertino_icons: ^1.0.3
 
 flutter:
   assets:

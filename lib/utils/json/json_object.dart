@@ -10,6 +10,7 @@ abstract class JSONObject {
   @protected
   List<String> get validator;
 
+  ///  `data` should be JSON (`Map<String, dynamic>`)
   JSONObject(this._data);
 
   Map<String, dynamic> getData() {
@@ -35,7 +36,11 @@ abstract class JSONObject {
 
   /// Validates Data
   @mustCallSuper
-  bool validate() {
+  bool validate({List<String>? optionalValidator}) {
+    if (optionalValidator != null) {
+      return FieldValidator.validate(optionalValidator, getData()) &&
+          FieldValidator.validate(validator, getData());
+    }
     return FieldValidator.validate(validator, getData());
   }
 

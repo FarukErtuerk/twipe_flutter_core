@@ -39,7 +39,7 @@ class Configuration {
     return Field.getDouble(_dimension!.textFourK[text], defaulValue);
   }
 
-  /// Screen `equals` or is `greater` than.
+  /// Screen `equals` or `greater` than.
   static bool isScreen(BuildContext context,
       {bool mobileSmall = false,
       bool mobileMedium = false,

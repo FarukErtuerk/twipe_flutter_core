@@ -1,3 +1,21 @@
+## [0.15.3].
+
+* ResponsiveBuilder
+- added buildDefault()
+
+* CacheObject
+- extends JSONObject
+
+* Model
+- Fixes
+
+* JSONObject
+- validator added optionalValidator
+
+* WatchedLoadableState
+* Removed CalendarWidget
+* Cupertino Icons removed
+
 ## [0.15.1].
 
 * ResponsiveBuilder
